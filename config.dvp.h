@@ -99,10 +99,10 @@ static const Layout layouts[] = {
 	/* { MOD, XK_x,     ACTION##stack, {.i = -1 } }, */
 
 #define STACKKEYS(MOD,ACTION) \
-    { MOD, XK_comma,            ACTION##stack,  {.i = INC(-1) } }, \
-    { MOD, XK_period,            ACTION##stack,  {.i = INC(+1) } }, \
-    { MOD, XK_u,            ACTION##stack,  {.i = 0 } }, \
-    { MOD, XK_space,        ACTION##stack,  {.i = PREVSEL } }, \
+    { MOD, XK_comma,        ACTION##stack,  {.i = INC(-1) } }, \
+    { MOD, XK_period,       ACTION##stack,  {.i = INC(+1) } }, \
+    { MOD, XK_e,            ACTION##stack,  {.i = 0 } }, \
+    { MOD, XK_u,            ACTION##stack,  {.i = PREVSEL } }, \
     { MOD, XK_Tab,          ACTION##stack,  {.i = PREVSEL } }, \
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
@@ -206,6 +206,10 @@ static Key keys[] = {
 	{ MODKEY,			XK_BackSpace,	spawn,		SHCMD("sysact") },
 	{ MODKEY|ShiftMask,		XK_BackSpace,	spawn,		SHCMD("sysact") },
 
+	{ MODKEY,			XK_backslash,		view,		{0} },
+	{ MODKEY,			XK_space,		    view,		{0} },
+	/* { MODKEY|ShiftMask,		XK_backslash,		spawn,		SHCMD("") }, */
+
 	{ MODKEY,			XK_Tab,		view,		{0} },
 	/* { MODKEY|ShiftMask,		XK_Tab,		spawn,		SHCMD("") }, */
 	{ MODKEY,			XK_q,		killclient,	{0} },
@@ -232,8 +236,6 @@ static Key keys[] = {
 	/* { MODKEY|ShiftMask,		XK_bracketleft,		spawn,		SHCMD("mpc seek -60") }, */
 	/* { MODKEY,			XK_bracketright,	spawn,		SHCMD("mpc seek +10") }, */
 	/* { MODKEY|ShiftMask,		XK_bracketright,	spawn,		SHCMD("mpc seek +60") }, */
-	{ MODKEY,			XK_backslash,		view,		{0} },
-	/* { MODKEY|ShiftMask,		XK_backslash,		spawn,		SHCMD("") }, */
 
 	{ MODKEY,			XK_a,		togglegaps,	{0} },
 	{ MODKEY|ShiftMask,		XK_a,		defaultgaps,	{0} },

@@ -113,26 +113,47 @@ static const char *termcmd[]  = { TERMINAL, NULL };
 /*
  * Xresources preferences to load at startup
  */
+/* ResourcePref resources[] = { */
+/* 		{ "color0",		STRING,	&normbordercolor }, */
+/* 		{ "color8",		STRING,	&selbordercolor }, */
+/* 		{ "color0",		STRING,	&normbgcolor }, */
+/* 		{ "color4",		STRING,	&normfgcolor }, */
+/* 		{ "color0",		STRING,	&selfgcolor }, */
+/* 		{ "color4",		STRING,	&selbgcolor }, */
+/* 		{ "borderpx",		INTEGER, &borderpx }, */
+/* 		{ "snap",		INTEGER, &snap }, */
+/* 		{ "showbar",		INTEGER, &showbar }, */
+/* 		{ "topbar",		INTEGER, &topbar }, */
+/* 		{ "nmaster",		INTEGER, &nmaster }, */
+/* 		{ "resizehints",	INTEGER, &resizehints }, */
+/* 		{ "mfact",		FLOAT,	&mfact }, */
+/* 		{ "gappih",		INTEGER, &gappih }, */
+/* 		{ "gappiv",		INTEGER, &gappiv }, */
+/* 		{ "gappoh",		INTEGER, &gappoh }, */
+/* 		{ "gappov",		INTEGER, &gappov }, */
+/* 		{ "swallowfloating",	INTEGER, &swallowfloating }, */
+/* 		{ "smartgaps",		INTEGER, &smartgaps }, */
+/* }; */
 ResourcePref resources[] = {
-		{ "color0",		STRING,	&normbordercolor },
-		{ "color8",		STRING,	&selbordercolor },
-		{ "color0",		STRING,	&normbgcolor },
-		{ "color4",		STRING,	&normfgcolor },
-		{ "color0",		STRING,	&selfgcolor },
-		{ "color4",		STRING,	&selbgcolor },
-		{ "borderpx",		INTEGER, &borderpx },
-		{ "snap",		INTEGER, &snap },
-		{ "showbar",		INTEGER, &showbar },
-		{ "topbar",		INTEGER, &topbar },
-		{ "nmaster",		INTEGER, &nmaster },
-		{ "resizehints",	INTEGER, &resizehints },
-		{ "mfact",		FLOAT,	&mfact },
-		{ "gappih",		INTEGER, &gappih },
-		{ "gappiv",		INTEGER, &gappiv },
-		{ "gappoh",		INTEGER, &gappoh },
-		{ "gappov",		INTEGER, &gappov },
-		{ "swallowfloating",	INTEGER, &swallowfloating },
-		{ "smartgaps",		INTEGER, &smartgaps },
+        { "dwm.color0",      STRING, &normbordercolor },
+        { "dwm.color17",     STRING, &selbordercolor },
+        { "dwm.color0",      STRING, &normbgcolor },
+        { "dwm.color15",     STRING, &normfgcolor },
+        { "dwm.color17",     STRING, &selfgcolor },
+        { "dwm.color16",     STRING, &selbgcolor }, /* topbar bg color*/
+        { "borderpx",        INTEGER, &borderpx },
+        { "snap",            INTEGER, &snap },
+        { "showbar",         INTEGER, &showbar },
+        { "topbar",          INTEGER, &topbar },
+        { "nmaster",         INTEGER, &nmaster },
+        { "resizehints",     INTEGER, &resizehints },
+        { "mfact",           FLOAT,  &mfact },
+        { "gappih",          INTEGER, &gappih },
+        { "gappiv",          INTEGER, &gappiv },
+        { "gappoh",          INTEGER, &gappoh },
+        { "gappov",          INTEGER, &gappov },
+        { "swallowfloating", INTEGER, &swallowfloating },
+        { "smartgaps",       INTEGER, &smartgaps },
 };
 
 #include <X11/XF86keysym.h>
@@ -145,21 +166,42 @@ static Key keys[] = {
 	/* { MODKEY|ShiftMask,		XK_Escape,	spawn,	SHCMD("") }, */
 	{ MODKEY,			XK_grave,	spawn,	SHCMD("dmenuunicode") },
 	/* { MODKEY|ShiftMask,		XK_grave,	togglescratch,	SHCMD("") }, */
-	TAGKEYS(			XK_1,		0)
-	TAGKEYS(			XK_2,		1)
-	TAGKEYS(			XK_3,		2)
-	TAGKEYS(			XK_4,		3)
-	TAGKEYS(			XK_5,		4)
-	TAGKEYS(			XK_6,		5)
-	TAGKEYS(			XK_7,		6)
-	TAGKEYS(			XK_8,		7)
-	TAGKEYS(			XK_9,		8)
-	{ MODKEY,			XK_0,		view,		{.ui = ~0 } },
-	{ MODKEY|ShiftMask,		XK_0,		tag,		{.ui = ~0 } },
-	{ MODKEY,			XK_minus,	spawn,		SHCMD("pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)") },
-	{ MODKEY|ShiftMask,		XK_minus,	spawn,		SHCMD("pamixer --allow-boost -d 15; kill -44 $(pidof dwmblocks)") },
-	{ MODKEY,			XK_equal,	spawn,		SHCMD("pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)") },
-	{ MODKEY|ShiftMask,		XK_equal,	spawn,		SHCMD("pamixer --allow-boost -i 15; kill -44 $(pidof dwmblocks)") },
+	/* TAGKEYS(			XK_1,		0) */
+	/* TAGKEYS(			XK_2,		1) */
+	/* TAGKEYS(			XK_3,		2) */
+	/* TAGKEYS(			XK_4,		3) */
+	/* TAGKEYS(			XK_5,		4) */
+	/* TAGKEYS(			XK_6,		5) */
+	/* TAGKEYS(			XK_7,		6) */
+	/* TAGKEYS(			XK_8,		7) */
+	/* TAGKEYS(			XK_9,		8) */
+	/* { MODKEY,			XK_0,		view,		{.ui = ~0 } }, */
+	/* { MODKEY|ShiftMask,		XK_0,		tag,		{.ui = ~0 } }, */
+	/* { MODKEY,			XK_minus,	spawn,		SHCMD("pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)") }, */
+	/* { MODKEY|ShiftMask,		XK_minus,	spawn,		SHCMD("pamixer --allow-boost -d 15; kill -44 $(pidof dwmblocks)") }, */
+	/* { MODKEY,			XK_equal,	spawn,		SHCMD("pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)") }, */
+	/* { MODKEY|ShiftMask,		XK_equal,	spawn,		SHCMD("pamixer --allow-boost -i 15; kill -44 $(pidof dwmblocks)") }, */
+    { MODKEY,               XK_ampersand,       view,   {.ui = ~0 } },
+    { MODKEY|ShiftMask,     XK_ampersand,       tag,    {.ui = ~0 } }, /* Stick to tags 1-9 */
+    TAGKEYS(                XK_bracketleft,     0)  /* tag # 9 */
+    TAGKEYS(                XK_h,               0)  /* tag # 9 */
+    TAGKEYS(                XK_braceleft,       1)  /* tag # 8 */
+    TAGKEYS(                XK_t,               1)  /* tag # 8 */
+    TAGKEYS(                XK_braceright,      2)  /* tag # 7 */
+    TAGKEYS(                XK_n,               2)  /* tag # 7 */
+    TAGKEYS(                XK_parenleft,       3)  /* tag # 6 */
+    TAGKEYS(                XK_s,               3)  /* tag # 6 */
+    TAGKEYS(                XK_equal,           4)  /* tag # 5 */
+    TAGKEYS(                XK_minus,           4)  /* tag # 5 */
+    TAGKEYS(                XK_asterisk,        5)  /* tag # 4 */
+    TAGKEYS(                XK_m,               5)  /* tag # 4 */
+    TAGKEYS(                XK_parenright,      6)  /* tag # 3 */
+    TAGKEYS(                XK_w,               6)  /* tag # 3 */
+    TAGKEYS(                XK_plus,            7)  /* tag # 2 */
+    TAGKEYS(                XK_v,               7)  /* tag # 2 */
+    TAGKEYS(                XK_bracketright,    8)  /* tag # 1 */
+    TAGKEYS(                XK_z,               8)  /* tag # 1 */
+
 	{ MODKEY,			XK_BackSpace,	spawn,		SHCMD("sysact") },
 	{ MODKEY|ShiftMask,		XK_BackSpace,	spawn,		SHCMD("sysact") },
 

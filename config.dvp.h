@@ -89,14 +89,20 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
-#define STACKKEYS(MOD,ACTION) \
-	{ MOD,	XK_j,	ACTION##stack,	{.i = INC(+1) } }, \
-	{ MOD,	XK_k,	ACTION##stack,	{.i = INC(-1) } }, \
-	{ MOD,  XK_v,   ACTION##stack,  {.i = 0 } }, \
+/* #define STACKKEYS(MOD,ACTION) \ */
+/* 	{ MOD,	XK_j,	ACTION##stack,	{.i = INC(+1) } }, \ */
+/* 	{ MOD,	XK_k,	ACTION##stack,	{.i = INC(-1) } }, \ */
+/* 	{ MOD,  XK_v,   ACTION##stack,  {.i = 0 } }, \ */
 	/* { MOD, XK_grave, ACTION##stack, {.i = PREVSEL } }, \ */
 	/* { MOD, XK_a,     ACTION##stack, {.i = 1 } }, \ */
 	/* { MOD, XK_z,     ACTION##stack, {.i = 2 } }, \ */
 	/* { MOD, XK_x,     ACTION##stack, {.i = -1 } }, */
+
+#define STACKKEYS(MOD,ACTION) \
+    { MOD, XK_e,            ACTION##stack,  {.i = INC(-1) } }, \
+    { MOD, XK_u,            ACTION##stack,  {.i = 0 } }, \
+    { MOD, XK_space,        ACTION##stack,  {.i = PREVSEL } }, \
+    { MOD, XK_Tab,          ACTION##stack,  {.i = PREVSEL } }, \
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }

@@ -34,6 +34,7 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
+
 const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL };
 const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL };
 static Sp scratchpads[] = {
@@ -89,6 +90,7 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+
 /* #define STACKKEYS(MOD,ACTION) \ */
 /* 	{ MOD,	XK_j,	ACTION##stack,	{.i = INC(+1) } }, \ */
 /* 	{ MOD,	XK_k,	ACTION##stack,	{.i = INC(-1) } }, \ */
@@ -97,13 +99,11 @@ static const Layout layouts[] = {
 	/* { MOD, XK_a,     ACTION##stack, {.i = 1 } }, \ */
 	/* { MOD, XK_z,     ACTION##stack, {.i = 2 } }, \ */
 	/* { MOD, XK_x,     ACTION##stack, {.i = -1 } }, */
-
 #define STACKKEYS(MOD,ACTION) \
     { MOD, XK_Tab,        ACTION##stack,  {.i = PREVSEL } }, \
     { MOD, XK_u,          ACTION##stack,  {.i = INC(+1) } }, \
     { MOD, XK_e,          ACTION##stack,  {.i = INC(-1) } }, \
     { MOD, XK_o,          ACTION##stack,  {.i = 0 } }, \
-    /* { MOD, XK_u,          ACTION##stack,  {.i = PREVSEL } }, \ */
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -182,26 +182,26 @@ static Key keys[] = {
 	/* { MODKEY|ShiftMask,		XK_minus,	spawn,		SHCMD("pamixer --allow-boost -d 15; kill -44 $(pidof dwmblocks)") }, */
 	/* { MODKEY,			XK_equal,	spawn,		SHCMD("pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)") }, */
 	/* { MODKEY|ShiftMask,		XK_equal,	spawn,		SHCMD("pamixer --allow-boost -i 15; kill -44 $(pidof dwmblocks)") }, */
-    { MODKEY,               XK_ampersand,       view,   {.ui = ~0 } },
-    { MODKEY|ShiftMask,     XK_ampersand,       tag,    {.ui = ~0 } }, /* Stick to tags 1-9 */
-    TAGKEYS(                XK_bracketleft,     0)  /* tag # 9 */
+    TAGKEYS(                XK_ampersand,       0)  /* tag # 9 */
     TAGKEYS(                XK_h,               0)  /* tag # 9 */
-    TAGKEYS(                XK_braceleft,       1)  /* tag # 8 */
+    TAGKEYS(                XK_bracketleft,     1)  /* tag # 8 */
     TAGKEYS(                XK_t,               1)  /* tag # 8 */
-    TAGKEYS(                XK_braceright,      2)  /* tag # 7 */
+    TAGKEYS(                XK_braceleft,       2)  /* tag # 7 */
     TAGKEYS(                XK_n,               2)  /* tag # 7 */
-    TAGKEYS(                XK_parenleft,       3)  /* tag # 6 */
+    TAGKEYS(                XK_braceright,      3)  /* tag # 6 */
     TAGKEYS(                XK_s,               3)  /* tag # 6 */
-    TAGKEYS(                XK_equal,           4)  /* tag # 5 */
+    TAGKEYS(                XK_parenleft,       4)  /* tag # 5 */
     TAGKEYS(                XK_m,               4)  /* tag # 5 */
-    TAGKEYS(                XK_asterisk,        5)  /* tag # 4 */
+    TAGKEYS(                XK_equal,           5)  /* tag # 4 */
     TAGKEYS(                XK_w,               5)  /* tag # 4 */
-    TAGKEYS(                XK_parenright,      6)  /* tag # 3 */
+    TAGKEYS(                XK_asterisk,        6)  /* tag # 3 */
     TAGKEYS(                XK_v,               6)  /* tag # 3 */
-    TAGKEYS(                XK_plus,            7)  /* tag # 2 */
+    TAGKEYS(                XK_parenright,      7)  /* tag # 2 */
     TAGKEYS(                XK_z,               7)  /* tag # 2 */
-    TAGKEYS(                XK_bracketright,    8)  /* tag # 1 */
+    TAGKEYS(                XK_plus,            8)  /* tag # 1 */
     TAGKEYS(                XK_minus,           8)  /* tag # 1 */
+    { MODKEY,               XK_bracketright,       view,   {.ui = ~0 } },
+    { MODKEY|ShiftMask,     XK_bracketright,       tag,    {.ui = ~0 } }, /* Stick to tags 1-9 */
 
 	{ MODKEY,			XK_BackSpace,	spawn,		SHCMD("sysact") },
 	{ MODKEY|ShiftMask,		XK_BackSpace,	spawn,		SHCMD("sysact") },

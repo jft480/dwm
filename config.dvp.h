@@ -93,10 +93,10 @@ static const Layout layouts[] = {
 
 #define STACKKEYS(MOD,ACTION) \
     { MOD, XK_Tab,                  ACTION##stack,  {.i = PREVSEL } }, \
-    { MOD, XK_r,                    ACTION##stack,  {.i = PREVSEL } }, \
-    { MOD, XK_l,                    ACTION##stack,  {.i = 0 } }, \
+    { MOD, XK_g,                    ACTION##stack,  {.i = 0 } }, \
     { MOD, XK_c,                    ACTION##stack,  {.i = INC(-1) } }, \
-    { MOD, XK_g,                    ACTION##stack,  {.i = INC(+1) } }, \
+    { MOD, XK_r,                    ACTION##stack,  {.i = INC(+1) } }, \
+    { MOD, XK_l,                    ACTION##stack,  {.i = PREVSEL } }, \
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -138,6 +138,7 @@ static Key keys[] = {
 	{ MODKEY,			            XK_BackSpace,	    spawn,		    SHCMD("sysact") },
 
     /* { MOD, XK_Tab,               ACTION##stack,      {.i = PREVSEL } }, \ */
+
 
 	{ MODKEY,			            XK_comma,		    shiftview,	    { .i = -1 } },
 	{ MODKEY|ShiftMask,		        XK_comma,		    shifttag,	    { .i = -1 } },
@@ -182,6 +183,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		        XK_Return,	        togglescratch,	{.ui = 0} },
 
 	{ MODKEY,			            XK_apostrophe,	    togglescratch,	{.ui = 1} },
+
 	{ MODKEY,			            XK_k,		        killclient,	    {0} },
 	{ MODKEY|ControlMask,			XK_x,		        incrgaps,	    {.i = -3 } },
 	{ MODKEY,			            XK_b,		        togglebar,	    {0} },

@@ -92,10 +92,11 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 #define STACKKEYS(MOD,ACTION) \
-    { MOD, XK_Tab,        ACTION##stack,  {.i = PREVSEL } }, \
-    { MOD, XK_o,          ACTION##stack,  {.i = 0 } }, \
-    { MOD, XK_e,          ACTION##stack,  {.i = INC(-1) } }, \
-    { MOD, XK_u,          ACTION##stack,  {.i = INC(+1) } }, \
+    { MOD, XK_Tab,                  ACTION##stack,  {.i = PREVSEL } }, \
+    { MOD, XK_r,                    ACTION##stack,  {.i = PREVSEL } }, \
+    { MOD, XK_l,                    ACTION##stack,  {.i = 0 } }, \
+    { MOD, XK_c,                    ACTION##stack,  {.i = INC(-1) } }, \
+    { MOD, XK_g,                    ACTION##stack,  {.i = INC(+1) } }, \
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -138,24 +139,26 @@ static Key keys[] = {
 
     /* { MOD, XK_Tab,               ACTION##stack,      {.i = PREVSEL } }, \ */
 
+	{ MODKEY,			            XK_comma,		    shiftview,	    { .i = -1 } },
+	{ MODKEY|ShiftMask,		        XK_comma,		    shifttag,	    { .i = -1 } },
+	{ MODKEY,			            XK_period,	        shiftview,	    { .i = 1 } },
+	{ MODKEY|ShiftMask,		        XK_period,	        shifttag,	    { .i = 1 } },
+
+    /* { MOD, XK_r,                 ACTION##stack,  {.i = PREVSEL } }, \ */
+    /* { MOD, XK_l,                 ACTION##stack,  {.i = 0 } }, \ */
+    /* { MOD, XK_c,                 ACTION##stack,  {.i = INC(-1) } }, \ */
+    /* { MOD, XK_g,                 ACTION##stack,  {.i = INC(+1) } }, \ */
+
+	{ MODKEY,			            XK_f,		        togglefullscr,	{0} },
+
     { MODKEY,                       XK_backslash,       view,           {.ui = ~0 } }, /* Show all tags */
     { MODKEY|ShiftMask,             XK_backslash,       tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
 
-	{ MODKEY,			            XK_f,		        togglefullscr,	{0} },
-	{ MODKEY|ShiftMask,		        XK_f,		        setlayout,	    {.v = &layouts[8]} },
-	{ MODKEY,			            XK_g,		        shiftview,	    { .i = -1 } },
-	{ MODKEY|ShiftMask,		        XK_g,		        shifttag,	    { .i = -1 } },
-	{ MODKEY,			            XK_c,	            shiftview,	    { .i = 1 } },
-	{ MODKEY|ShiftMask,		        XK_c,	            shifttag,	    { .i = 1 } },
-	{ MODKEY,			            XK_r,		        setlayout,	    {.v = &layouts[0]} }, /* tile */
-	{ MODKEY|ShiftMask,		        XK_r,		        setlayout,	    {.v = &layouts[1]} }, /* bstack */
-	{ MODKEY,			            XK_l,		        setlayout,	    {.v = &layouts[4]} }, /* deck */
-	{ MODKEY|ShiftMask,		        XK_l,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
-	{ MODKEY|ControlMask,	        XK_l,		        setmfact,      	{.f = +0.05} },
-
-    /* { MOD, XK_o,                 ACTION##stack,      {.i = 0 } }, \ */
-    /* { MOD, XK_e,                 ACTION##stack,      {.i = INC(-1) } }, \ */
-    /* { MOD, XK_u,                 ACTION##stack,      {.i = INC(+1) } }, \ */
+	{ MODKEY,			            XK_u,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
+	{ MODKEY|ShiftMask,		        XK_u,		        setlayout,	    {.v = &layouts[4]} }, /* deck */
+	{ MODKEY|ControlMask,	        XK_u,		        setmfact,      	{.f = +0.05} },
+	{ MODKEY,			            XK_e,		        setlayout,	    {.v = &layouts[0]} }, /* tile */
+	{ MODKEY|ShiftMask,		        XK_e,		        setlayout,	    {.v = &layouts[1]} }, /* bstack */
 
     TAGKEYS(                        XK_h,               0)
     TAGKEYS(                        XK_t,               1)
@@ -253,22 +256,6 @@ static Key keys[] = {
 	{ 0, XF86XK_TouchpadOn,		spawn,		SHCMD("synclient TouchpadOff=0") },
 	{ 0, XF86XK_MonBrightnessUp,	spawn,		SHCMD("xbacklight -inc 15") },
 	{ 0, XF86XK_MonBrightnessDown,	spawn,		SHCMD("xbacklight -dec 15") },
-
-	/* { MODKEY|Mod4Mask,              XK_h,      incrgaps,       {.i = +1 } }, */
-	/* { MODKEY|Mod4Mask,              XK_l,      incrgaps,       {.i = -1 } }, */
-	/* { MODKEY|Mod4Mask|ShiftMask,    XK_h,      incrogaps,      {.i = +1 } }, */
-	/* { MODKEY|Mod4Mask|ShiftMask,    XK_l,      incrogaps,      {.i = -1 } }, */
-	/* { MODKEY|Mod4Mask|ControlMask,  XK_h,      incrigaps,      {.i = +1 } }, */
-	/* { MODKEY|Mod4Mask|ControlMask,  XK_l,      incrigaps,      {.i = -1 } }, */
-	/* { MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} }, */
-	/* { MODKEY,                       XK_y,      incrihgaps,     {.i = +1 } }, */
-	/* { MODKEY,                       XK_o,      incrihgaps,     {.i = -1 } }, */
-	/* { MODKEY|ControlMask,           XK_y,      incrivgaps,     {.i = +1 } }, */
-	/* { MODKEY|ControlMask,           XK_o,      incrivgaps,     {.i = -1 } }, */
-	/* { MODKEY|Mod4Mask,              XK_y,      incrohgaps,     {.i = +1 } }, */
-	/* { MODKEY|Mod4Mask,              XK_o,      incrohgaps,     {.i = -1 } }, */
-	/* { MODKEY|ShiftMask,             XK_y,      incrovgaps,     {.i = +1 } }, */
-	/* { MODKEY|ShiftMask,             XK_o,      incrovgaps,     {.i = -1 } }, */
 
 };
 

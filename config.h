@@ -129,95 +129,68 @@ ResourcePref resources[] = {
 #include "shiftview.c"
 
 static Key keys[] = {
-	/* modifier                     key        function        argument */
-	STACKKEYS(MODKEY,                          focus)
-	STACKKEYS(MODKEY|ShiftMask,                push)
+	/* modifier                     key                 function        argument */
 
-	{ MODKEY,			    XK_BackSpace,	    spawn,		SHCMD("sysact") },
+	STACKKEYS(MODKEY,                                   focus)
+	STACKKEYS(MODKEY|ShiftMask,                         push)
 
-    /* { MOD, XK_Tab,       ACTION##stack,  {.i = PREVSEL } }, \ */
+	{ MODKEY,			            XK_BackSpace,	    spawn,		    SHCMD("sysact") },
 
-    { MODKEY,               XK_backslash,       view,   {.ui = ~0 } }, /* Show all tags */
-    { MODKEY|ShiftMask,     XK_backslash,       tag,    {.ui = ~0 } }, /* Stick to tags 1-9 */
+    /* { MOD, XK_Tab,               ACTION##stack,      {.i = PREVSEL } }, \ */
 
-	{ MODKEY,			    XK_f,		        togglefullscr,	{0} },
-	{ MODKEY|ShiftMask,		XK_f,		        setlayout,	{.v = &layouts[8]} },
-	{ MODKEY,			    XK_g,		        shiftview,	{ .i = -1 } },
-	{ MODKEY|ShiftMask,		XK_g,		        shifttag,	{ .i = -1 } },
-	{ MODKEY,			    XK_r,		        setlayout,	{.v = &layouts[0]} }, /* tile */
-	{ MODKEY|ShiftMask,		XK_r,		        setlayout,	{.v = &layouts[1]} }, /* bstack */
-	{ MODKEY,			    XK_l,		        setlayout,	{.v = &layouts[4]} }, /* deck */
-	{ MODKEY|ShiftMask,		XK_l,		        setlayout,	{.v = &layouts[5]} }, /* monocle */
-	{ MODKEY|ControlMask,	XK_l,		        setmfact,      	{.f = +0.05} },
+    { MODKEY,                       XK_backslash,       view,           {.ui = ~0 } }, /* Show all tags */
+    { MODKEY|ShiftMask,             XK_backslash,       tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
 
-    /* { MOD, XK_o,         ACTION##stack,  {.i = 0 } }, \ */
-    /* { MOD, XK_e,         ACTION##stack,  {.i = INC(-1) } }, \ */
-    /* { MOD, XK_u,         ACTION##stack,  {.i = INC(+1) } }, \ */
+	{ MODKEY,			            XK_f,		        togglefullscr,	{0} },
+	{ MODKEY|ShiftMask,		        XK_f,		        setlayout,	    {.v = &layouts[8]} },
+	{ MODKEY,			            XK_g,		        shiftview,	    { .i = -1 } },
+	{ MODKEY|ShiftMask,		        XK_g,		        shifttag,	    { .i = -1 } },
+	{ MODKEY,			            XK_c,	            shiftview,	    { .i = 1 } },
+	{ MODKEY|ShiftMask,		        XK_c,	            shifttag,	    { .i = 1 } },
+	{ MODKEY,			            XK_r,		        setlayout,	    {.v = &layouts[0]} }, /* tile */
+	{ MODKEY|ShiftMask,		        XK_r,		        setlayout,	    {.v = &layouts[1]} }, /* bstack */
+	{ MODKEY,			            XK_l,		        setlayout,	    {.v = &layouts[4]} }, /* deck */
+	{ MODKEY|ShiftMask,		        XK_l,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
+	{ MODKEY|ControlMask,	        XK_l,		        setmfact,      	{.f = +0.05} },
 
-    TAGKEYS(                XK_h,               0)
-    TAGKEYS(                XK_t,               1)
-    TAGKEYS(                XK_n,               2)
-    TAGKEYS(                XK_s,               3)
-    TAGKEYS(                XK_minus,           8)
-    TAGKEYS(                XK_m,               4)
-    TAGKEYS(                XK_w,               5)
-    TAGKEYS(                XK_v,               6)
-    TAGKEYS(                XK_z,               7)
+    /* { MOD, XK_o,                 ACTION##stack,      {.i = 0 } }, \ */
+    /* { MOD, XK_e,                 ACTION##stack,      {.i = INC(-1) } }, \ */
+    /* { MOD, XK_u,                 ACTION##stack,      {.i = INC(+1) } }, \ */
 
-	{ MODKEY,			    XK_space,		    view,		{0} }, /* Switch to previous tag */
-	{ MODKEY,			    XK_k,		        killclient,	{0} },
-	{ MODKEY|ShiftMask,		XK_k,		        spawn,		SHCMD("sysact") },
-	/* { MODKEY,			XK_w,		spawn,		SHCMD("$BROWSER") }, */
-	/* { MODKEY|ShiftMask,		XK_w,		spawn,		SHCMD(TERMINAL " -e sudo nmtui") }, */
-	/* { MODKEY,			XK_e,		spawn,		SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook") }, */
-	/* { MODKEY|ShiftMask,		XK_e,		spawn,		SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook") }, */
-	/* { MODKEY,			XK_r,		spawn,		SHCMD(TERMINAL " -e lf") }, */
-	/* { MODKEY|ShiftMask,		XK_r,		spawn,		SHCMD(TERMINAL " -e htop") }, */
-	/* { MODKEY,			XK_y,		setlayout,	{.v = &layouts[2]} }, /1* spiral *1/ */
-	/* { MODKEY|ShiftMask,		XK_y,		setlayout,	{.v = &layouts[3]} }, /1* dwindle *1/ */
-	/* { MODKEY,			XK_i,		setlayout,	{.v = &layouts[6]} }, /1* centeredmaster *1/ */
-	/* { MODKEY|ShiftMask,		XK_i,		setlayout,	{.v = &layouts[7]} }, /1* centeredfloatingmaster *1/ */
-	{ MODKEY,			            XK_i,		incnmaster,     {.i = +1 } },
-	{ MODKEY|ShiftMask,		        XK_i,		incnmaster,     {.i = -1 } },
-	/* { MODKEY,			XK_p,			spawn,		SHCMD("mpc toggle") }, */
-	/* { MODKEY|ShiftMask,		XK_p,			spawn,		SHCMD("mpc pause ; pauseallmpv") }, */
-	/* { MODKEY,			XK_bracketleft,		spawn,		SHCMD("mpc seek -10") }, */
-	/* { MODKEY|ShiftMask,		XK_bracketleft,		spawn,		SHCMD("mpc seek -60") }, */
-	/* { MODKEY,			XK_bracketright,	spawn,		SHCMD("mpc seek +10") }, */
-	/* { MODKEY|ShiftMask,		XK_bracketright,	spawn,		SHCMD("mpc seek +60") }, */
+    TAGKEYS(                        XK_h,               0)
+    TAGKEYS(                        XK_t,               1)
+    TAGKEYS(                        XK_n,               2)
+    TAGKEYS(                        XK_s,               3)
+    TAGKEYS(                        XK_minus,           8)
+    TAGKEYS(                        XK_m,               4)
+    TAGKEYS(                        XK_w,               5)
+    TAGKEYS(                        XK_v,               6)
+    TAGKEYS(                        XK_z,               7)
 
-	{ MODKEY,			XK_a,		togglegaps,	{0} },
-	{ MODKEY|ShiftMask,		XK_a,		defaultgaps,	{0} },
-	{ MODKEY|ControlMask,			XK_s,		togglesticky,	{0} },
-	/* { MODKEY|ShiftMask,		XK_s,		spawn,		SHCMD("") }, */
-	{ MODKEY,			XK_d,		spawn,          SHCMD("dmenu_run") },
-	/* { MODKEY,			XK_d,		spawn,		SHCMD("") } }, */
-	{ MODKEY|ControlMask,			XK_h,		setmfact,	{.f = -0.05} },
-	/* J and K are automatically bound above in STACKEYS */
-	{ MODKEY,			XK_c,	shiftview,	{ .i = 1 } },
-	{ MODKEY|ShiftMask,		XK_c,	shifttag,	{ .i = 1 } },
-	{ MODKEY,			XK_apostrophe,	togglescratch,	{.ui = 1} },
-	/* { MODKEY|ShiftMask,		XK_apostrophe,	spawn,		SHCMD("") }, */
-	{ MODKEY,			XK_Return,	spawn,		{.v = termcmd } },
-	{ MODKEY|ShiftMask,		XK_Return,	togglescratch,	{.ui = 0} },
+	{ MODKEY,			            XK_a,		        togglegaps,	    {0} },
+	{ MODKEY|ShiftMask,		        XK_a,		        defaultgaps,	{0} },
+	{ MODKEY,			            XK_i,		        incnmaster,     {.i = +1 } },
+	{ MODKEY|ShiftMask,		        XK_i,		        incnmaster,     {.i = -1 } },
+	{ MODKEY,			            XK_d,		        spawn,          SHCMD("dmenu_run") },
+	{ MODKEY|ControlMask,			XK_h,		        setmfact,	    {.f = -0.05} },
+	{ MODKEY|ControlMask,			XK_s,		        togglesticky,	{0} },
 
-	{ MODKEY|ControlMask,			XK_z,		incrgaps,	{.i = +3 } },
-	/* { MODKEY|ShiftMask,		XK_z,		spawn,		SHCMD("") }, */
-	{ MODKEY|ControlMask,			XK_x,		incrgaps,	{.i = -3 } },
-	/* { MODKEY|ShiftMask,		XK_x,		spawn,		SHCMD("") }, */
-	/* { MODKEY,			XK_c,		spawn,		SHCMD("") }, */
-	/* { MODKEY|ShiftMask,		XK_c,		spawn,		SHCMD("") }, */
-	/* V is automatically bound above in STACKKEYS */
-	{ MODKEY,			XK_b,		togglebar,	{0} },
-	/* { MODKEY|ShiftMask,		XK_b,		spawn,		SHCMD("") }, */
-	/* { MODKEY,			XK_n,		spawn,		SHCMD(TERMINAL " -e nvim -c VimwikiIndex") }, */
-	/* { MODKEY|ShiftMask,		XK_n,		spawn,		SHCMD(TERMINAL " -e newsboat; pkill -RTMIN+6 dwmblocks") }, */
-	/* { MODKEY,			XK_m,		spawn,		SHCMD(TERMINAL " -e ncmpcpp") }, */
-	/* { MODKEY|ShiftMask,		XK_m,		spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") }, */
-	/* { MODKEY,			XK_comma,	spawn,		SHCMD("mpc prev") }, */
-	/* { MODKEY|ShiftMask,		XK_comma,	spawn,		SHCMD("mpc seek 0%") }, */
-	/* { MODKEY,			XK_period,	spawn,		SHCMD("mpc next") }, */
-	/* { MODKEY|ShiftMask,		XK_period,	spawn,		SHCMD("mpc repeat") }, */
+	{ MODKEY,			            XK_Return,	        spawn,		    {.v = termcmd } },
+	{ MODKEY|ShiftMask,		        XK_Return,	        togglescratch,	{.ui = 0} },
+
+	{ MODKEY,			            XK_apostrophe,	    togglescratch,	{.ui = 1} },
+	{ MODKEY,			            XK_k,		        killclient,	    {0} },
+	{ MODKEY|ControlMask,			XK_x,		        incrgaps,	    {.i = -3 } },
+	{ MODKEY,			            XK_b,		        togglebar,	    {0} },
+
+	{ MODKEY|ControlMask,			XK_z,		        incrgaps,	    {.i = +3 } },
+
+	{ MODKEY,			            XK_space,		    view,		    {0} }, /* Switch to previous tag */
+
+
+
+
+
 
 	{ MODKEY,			XK_Left,	focusmon,	{.i = -1 } },
 	{ MODKEY|ShiftMask,		XK_Left,	tagmon,		{.i = -1 } },

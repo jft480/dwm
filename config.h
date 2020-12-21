@@ -99,11 +99,11 @@ static const Layout layouts[] = {
 	/* { MOD, XK_x,     ACTION##stack, {.i = -1 } }, */
 
 #define STACKKEYS(MOD,ACTION) \
-    { MOD, XK_comma,        ACTION##stack,  {.i = INC(-1) } }, \
-    { MOD, XK_period,       ACTION##stack,  {.i = INC(+1) } }, \
-    { MOD, XK_e,            ACTION##stack,  {.i = 0 } }, \
-    { MOD, XK_u,            ACTION##stack,  {.i = PREVSEL } }, \
-    { MOD, XK_Tab,          ACTION##stack,  {.i = PREVSEL } }, \
+    { MOD, XK_u,          ACTION##stack,  {.i = PREVSEL } }, \
+    { MOD, XK_Tab,        ACTION##stack,  {.i = PREVSEL } }, \
+    { MOD, XK_i,          ACTION##stack,  {.i = INC(-1) } }, \
+    { MOD, XK_e,          ACTION##stack,  {.i = INC(+1) } }, \
+    { MOD, XK_o,          ACTION##stack,  {.i = 0 } }, \
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -228,7 +228,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_l,		setlayout,	{.v = &layouts[5]} }, /* monocle */
 	/* { MODKEY,			XK_i,		setlayout,	{.v = &layouts[6]} }, /1* centeredmaster *1/ */
 	/* { MODKEY|ShiftMask,		XK_i,		setlayout,	{.v = &layouts[7]} }, /1* centeredfloatingmaster *1/ */
-	{ MODKEY,			XK_o,		incnmaster,     {.i = +1 } },
+	{ MODKEY|ControlMask,			XK_o,		incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,		XK_o,		incnmaster,     {.i = -1 } },
 	/* { MODKEY,			XK_p,			spawn,		SHCMD("mpc toggle") }, */
 	/* { MODKEY|ShiftMask,		XK_p,			spawn,		SHCMD("mpc pause ; pauseallmpv") }, */

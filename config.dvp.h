@@ -91,19 +91,11 @@ static const Layout layouts[] = {
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
-/* #define STACKKEYS(MOD,ACTION) \ */
-/* 	{ MOD,	XK_j,	ACTION##stack,	{.i = INC(+1) } }, \ */
-/* 	{ MOD,	XK_k,	ACTION##stack,	{.i = INC(-1) } }, \ */
-/* 	{ MOD,  XK_v,   ACTION##stack,  {.i = 0 } }, \ */
-	/* { MOD, XK_grave, ACTION##stack, {.i = PREVSEL } }, \ */
-	/* { MOD, XK_a,     ACTION##stack, {.i = 1 } }, \ */
-	/* { MOD, XK_z,     ACTION##stack, {.i = 2 } }, \ */
-	/* { MOD, XK_x,     ACTION##stack, {.i = -1 } }, */
 #define STACKKEYS(MOD,ACTION) \
     { MOD, XK_Tab,        ACTION##stack,  {.i = PREVSEL } }, \
-    { MOD, XK_u,          ACTION##stack,  {.i = INC(+1) } }, \
-    { MOD, XK_e,          ACTION##stack,  {.i = INC(-1) } }, \
     { MOD, XK_o,          ACTION##stack,  {.i = 0 } }, \
+    { MOD, XK_e,          ACTION##stack,  {.i = INC(-1) } }, \
+    { MOD, XK_u,          ACTION##stack,  {.i = INC(+1) } }, \
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -111,30 +103,6 @@ static const Layout layouts[] = {
 /* commands */
 static const char *termcmd[]  = { TERMINAL, NULL };
 
-/*
- * Xresources preferences to load at startup
- */
-/* ResourcePref resources[] = { */
-/* 		{ "color0",		STRING,	&normbordercolor }, */
-/* 		{ "color8",		STRING,	&selbordercolor }, */
-/* 		{ "color0",		STRING,	&normbgcolor }, */
-/* 		{ "color4",		STRING,	&normfgcolor }, */
-/* 		{ "color0",		STRING,	&selfgcolor }, */
-/* 		{ "color4",		STRING,	&selbgcolor }, */
-/* 		{ "borderpx",		INTEGER, &borderpx }, */
-/* 		{ "snap",		INTEGER, &snap }, */
-/* 		{ "showbar",		INTEGER, &showbar }, */
-/* 		{ "topbar",		INTEGER, &topbar }, */
-/* 		{ "nmaster",		INTEGER, &nmaster }, */
-/* 		{ "resizehints",	INTEGER, &resizehints }, */
-/* 		{ "mfact",		FLOAT,	&mfact }, */
-/* 		{ "gappih",		INTEGER, &gappih }, */
-/* 		{ "gappiv",		INTEGER, &gappiv }, */
-/* 		{ "gappoh",		INTEGER, &gappoh }, */
-/* 		{ "gappov",		INTEGER, &gappov }, */
-/* 		{ "swallowfloating",	INTEGER, &swallowfloating }, */
-/* 		{ "smartgaps",		INTEGER, &smartgaps }, */
-/* }; */
 ResourcePref resources[] = {
         { "dwm.color0",      STRING, &normbordercolor },
         { "dwm.color17",     STRING, &selbordercolor },
@@ -164,68 +132,49 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	STACKKEYS(MODKEY,                          focus)
 	STACKKEYS(MODKEY|ShiftMask,                push)
-	/* { MODKEY|ShiftMask,		XK_Escape,	spawn,	SHCMD("") }, */
-	{ MODKEY,			XK_grave,	spawn,	SHCMD("dmenuunicode") },
-	/* { MODKEY|ShiftMask,		XK_grave,	togglescratch,	SHCMD("") }, */
-	/* TAGKEYS(			XK_1,		0) */
-	/* TAGKEYS(			XK_2,		1) */
-	/* TAGKEYS(			XK_3,		2) */
-	/* TAGKEYS(			XK_4,		3) */
-	/* TAGKEYS(			XK_5,		4) */
-	/* TAGKEYS(			XK_6,		5) */
-	/* TAGKEYS(			XK_7,		6) */
-	/* TAGKEYS(			XK_8,		7) */
-	/* TAGKEYS(			XK_9,		8) */
-	/* { MODKEY,			XK_0,		view,		{.ui = ~0 } }, */
-	/* { MODKEY|ShiftMask,		XK_0,		tag,		{.ui = ~0 } }, */
-	/* { MODKEY,			XK_minus,	spawn,		SHCMD("pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)") }, */
-	/* { MODKEY|ShiftMask,		XK_minus,	spawn,		SHCMD("pamixer --allow-boost -d 15; kill -44 $(pidof dwmblocks)") }, */
-	/* { MODKEY,			XK_equal,	spawn,		SHCMD("pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)") }, */
-	/* { MODKEY|ShiftMask,		XK_equal,	spawn,		SHCMD("pamixer --allow-boost -i 15; kill -44 $(pidof dwmblocks)") }, */
-    TAGKEYS(                XK_ampersand,       0)  /* tag # 9 */
-    TAGKEYS(                XK_h,               0)  /* tag # 9 */
-    TAGKEYS(                XK_bracketleft,     1)  /* tag # 8 */
-    TAGKEYS(                XK_t,               1)  /* tag # 8 */
-    TAGKEYS(                XK_braceleft,       2)  /* tag # 7 */
-    TAGKEYS(                XK_n,               2)  /* tag # 7 */
-    TAGKEYS(                XK_braceright,      3)  /* tag # 6 */
-    TAGKEYS(                XK_s,               3)  /* tag # 6 */
-    TAGKEYS(                XK_parenleft,       4)  /* tag # 5 */
-    TAGKEYS(                XK_m,               4)  /* tag # 5 */
-    TAGKEYS(                XK_equal,           5)  /* tag # 4 */
-    TAGKEYS(                XK_w,               5)  /* tag # 4 */
-    TAGKEYS(                XK_asterisk,        6)  /* tag # 3 */
-    TAGKEYS(                XK_v,               6)  /* tag # 3 */
-    TAGKEYS(                XK_parenright,      7)  /* tag # 2 */
-    TAGKEYS(                XK_z,               7)  /* tag # 2 */
-    TAGKEYS(                XK_plus,            8)  /* tag # 1 */
-    TAGKEYS(                XK_minus,           8)  /* tag # 1 */
-    { MODKEY,               XK_bracketright,       view,   {.ui = ~0 } },
-    { MODKEY|ShiftMask,     XK_bracketright,       tag,    {.ui = ~0 } }, /* Stick to tags 1-9 */
 
-	{ MODKEY,			XK_BackSpace,	spawn,		SHCMD("sysact") },
-	{ MODKEY|ShiftMask,		XK_BackSpace,	spawn,		SHCMD("sysact") },
+	{ MODKEY,			    XK_BackSpace,	    spawn,		SHCMD("sysact") },
 
-	{ MODKEY,			XK_backslash,		view,		{0} },
-	{ MODKEY,			XK_space,		    view,		{0} },
-	/* { MODKEY|ShiftMask,		XK_backslash,		spawn,		SHCMD("") }, */
+    /* { MOD, XK_Tab,       ACTION##stack,  {.i = PREVSEL } }, \ */
 
-	/* { MODKEY,			XK_Tab,		view,		{0} }, */
-	/* { MODKEY|ShiftMask,		XK_Tab,		spawn,		SHCMD("") }, */
-	{ MODKEY,			XK_q,		killclient,	{0} },
-	{ MODKEY|ShiftMask,		XK_q,		spawn,		SHCMD("sysact") },
+    { MODKEY,               XK_backslash,       view,   {.ui = ~0 } }, /* Show all tags */
+    { MODKEY|ShiftMask,     XK_backslash,       tag,    {.ui = ~0 } }, /* Stick to tags 1-9 */
+
+	{ MODKEY,			    XK_f,		        togglefullscr,	{0} },
+	{ MODKEY|ShiftMask,		XK_f,		        setlayout,	{.v = &layouts[8]} },
+	{ MODKEY,			    XK_g,		        shiftview,	{ .i = -1 } },
+	{ MODKEY|ShiftMask,		XK_g,		        shifttag,	{ .i = -1 } },
+	{ MODKEY,			    XK_r,		        setlayout,	{.v = &layouts[0]} }, /* tile */
+	{ MODKEY|ShiftMask,		XK_r,		        setlayout,	{.v = &layouts[1]} }, /* bstack */
+	{ MODKEY,			    XK_l,		        setlayout,	{.v = &layouts[4]} }, /* deck */
+	{ MODKEY|ShiftMask,		XK_l,		        setlayout,	{.v = &layouts[5]} }, /* monocle */
+	{ MODKEY|ControlMask,	XK_l,		        setmfact,      	{.f = +0.05} },
+
+    /* { MOD, XK_o,         ACTION##stack,  {.i = 0 } }, \ */
+    /* { MOD, XK_e,         ACTION##stack,  {.i = INC(-1) } }, \ */
+    /* { MOD, XK_u,         ACTION##stack,  {.i = INC(+1) } }, \ */
+
+    TAGKEYS(                XK_h,               0)
+    TAGKEYS(                XK_t,               1)
+    TAGKEYS(                XK_n,               2)
+    TAGKEYS(                XK_s,               3)
+    TAGKEYS(                XK_minus,           8)
+    TAGKEYS(                XK_m,               4)
+    TAGKEYS(                XK_w,               5)
+    TAGKEYS(                XK_v,               6)
+    TAGKEYS(                XK_z,               7)
+
+	{ MODKEY,			    XK_space,		    view,		{0} }, /* Switch to previous tag */
+	{ MODKEY,			    XK_k,		        killclient,	{0} },
+	{ MODKEY|ShiftMask,		XK_k,		        spawn,		SHCMD("sysact") },
 	/* { MODKEY,			XK_w,		spawn,		SHCMD("$BROWSER") }, */
 	/* { MODKEY|ShiftMask,		XK_w,		spawn,		SHCMD(TERMINAL " -e sudo nmtui") }, */
 	/* { MODKEY,			XK_e,		spawn,		SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook") }, */
 	/* { MODKEY|ShiftMask,		XK_e,		spawn,		SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook") }, */
 	/* { MODKEY,			XK_r,		spawn,		SHCMD(TERMINAL " -e lf") }, */
 	/* { MODKEY|ShiftMask,		XK_r,		spawn,		SHCMD(TERMINAL " -e htop") }, */
-	{ MODKEY,			XK_r,		setlayout,	{.v = &layouts[0]} }, /* tile */
-	{ MODKEY|ShiftMask,		XK_r,		setlayout,	{.v = &layouts[1]} }, /* bstack */
 	/* { MODKEY,			XK_y,		setlayout,	{.v = &layouts[2]} }, /1* spiral *1/ */
 	/* { MODKEY|ShiftMask,		XK_y,		setlayout,	{.v = &layouts[3]} }, /1* dwindle *1/ */
-	{ MODKEY,			XK_l,		setlayout,	{.v = &layouts[4]} }, /* deck */
-	{ MODKEY|ShiftMask,		XK_l,		setlayout,	{.v = &layouts[5]} }, /* monocle */
 	/* { MODKEY,			XK_i,		setlayout,	{.v = &layouts[6]} }, /1* centeredmaster *1/ */
 	/* { MODKEY|ShiftMask,		XK_i,		setlayout,	{.v = &layouts[7]} }, /1* centeredfloatingmaster *1/ */
 	{ MODKEY,			            XK_i,		incnmaster,     {.i = +1 } },
@@ -243,13 +192,8 @@ static Key keys[] = {
 	/* { MODKEY|ShiftMask,		XK_s,		spawn,		SHCMD("") }, */
 	{ MODKEY,			XK_d,		spawn,          SHCMD("dmenu_run") },
 	/* { MODKEY,			XK_d,		spawn,		SHCMD("") } }, */
-	{ MODKEY,			XK_f,		togglefullscr,	{0} },
-	{ MODKEY|ShiftMask,		XK_f,		setlayout,	{.v = &layouts[8]} },
-	{ MODKEY,			XK_g,		shiftview,	{ .i = -1 } },
-	{ MODKEY|ShiftMask,		XK_g,		shifttag,	{ .i = -1 } },
 	{ MODKEY|ControlMask,			XK_h,		setmfact,	{.f = -0.05} },
 	/* J and K are automatically bound above in STACKEYS */
-	{ MODKEY|ControlMask,			XK_l,		setmfact,      	{.f = +0.05} },
 	{ MODKEY,			XK_c,	shiftview,	{ .i = 1 } },
 	{ MODKEY|ShiftMask,		XK_c,	shifttag,	{ .i = 1 } },
 	{ MODKEY,			XK_apostrophe,	togglescratch,	{.ui = 1} },
@@ -382,3 +326,58 @@ static Button buttons[] = {
 	{ ClkTagBar,		0,		Button5,	shiftview,	{.i = 1} },
 	{ ClkRootWin,		0,		Button2,	togglebar,	{0} },
 };
+
+
+
+
+/* #define STACKKEYS(MOD,ACTION) \ */
+/* 	{ MOD,	XK_j,	ACTION##stack,	{.i = INC(+1) } }, \ */
+/* 	{ MOD,	XK_k,	ACTION##stack,	{.i = INC(-1) } }, \ */
+/* 	{ MOD,  XK_v,   ACTION##stack,  {.i = 0 } }, \ */
+	/* { MOD, XK_grave, ACTION##stack, {.i = PREVSEL } }, \ */
+	/* { MOD, XK_a,     ACTION##stack, {.i = 1 } }, \ */
+	/* { MOD, XK_z,     ACTION##stack, {.i = 2 } }, \ */
+	/* { MOD, XK_x,     ACTION##stack, {.i = -1 } }, */
+
+
+
+/*
+ * Xresources preferences to load at startup
+ */
+/* ResourcePref resources[] = { */
+/* 		{ "color0",		STRING,	&normbordercolor }, */
+/* 		{ "color8",		STRING,	&selbordercolor }, */
+/* 		{ "color0",		STRING,	&normbgcolor }, */
+/* 		{ "color4",		STRING,	&normfgcolor }, */
+/* 		{ "color0",		STRING,	&selfgcolor }, */
+/* 		{ "color4",		STRING,	&selbgcolor }, */
+/* 		{ "borderpx",		INTEGER, &borderpx }, */
+/* 		{ "snap",		INTEGER, &snap }, */
+/* 		{ "showbar",		INTEGER, &showbar }, */
+/* 		{ "topbar",		INTEGER, &topbar }, */
+/* 		{ "nmaster",		INTEGER, &nmaster }, */
+/* 		{ "resizehints",	INTEGER, &resizehints }, */
+/* 		{ "mfact",		FLOAT,	&mfact }, */
+/* 		{ "gappih",		INTEGER, &gappih }, */
+/* 		{ "gappiv",		INTEGER, &gappiv }, */
+/* 		{ "gappoh",		INTEGER, &gappoh }, */
+/* 		{ "gappov",		INTEGER, &gappov }, */
+/* 		{ "swallowfloating",	INTEGER, &swallowfloating }, */
+/* 		{ "smartgaps",		INTEGER, &smartgaps }, */
+/* }; */
+
+
+    /* $&[{}(=*)+]!# */
+    /* ~%7531902468` */
+
+    /* TAGKEYS(                XK_ampersand,       0) */
+    /* TAGKEYS(                XK_bracketleft,     1) */
+    /* TAGKEYS(                XK_braceleft,       2) */
+    /* TAGKEYS(                XK_braceright,      3) */
+    /* TAGKEYS(                XK_parenleft,       4) */
+    /* TAGKEYS(                XK_equal,           5) */
+    /* TAGKEYS(                XK_asterisk,        6) */
+    /* TAGKEYS(                XK_parenright,      7) */
+    /* TAGKEYS(                XK_plus,            8) */
+    /* { MODKEY,               XK_bracketright,    view,   {.ui = ~0 } }, /1* Show all tags *1/ */
+    /* { MODKEY|ShiftMask,     XK_bracketright,    tag,    {.ui = ~0 } }, /1* Stick to tags 1-9 *1/ */

@@ -138,11 +138,7 @@ static Key keys[] = {
 
     /* { MOD, XK_Tab,               ACTION##stack,      {.i = PREVSEL } }, \ */
 
-    { MODKEY,                       XK_backslash,       view,           {.ui = ~0 } }, /* Show all tags */
-    { MODKEY|ShiftMask,             XK_backslash,       tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
-
 	{ MODKEY,			            XK_f,		        togglefullscr,	{0} },
-	{ MODKEY|ShiftMask,		        XK_f,		        setlayout,	    {.v = &layouts[8]} },
 	{ MODKEY,			            XK_g,		        shiftview,	    { .i = -1 } },
 	{ MODKEY|ShiftMask,		        XK_g,		        shifttag,	    { .i = -1 } },
 	{ MODKEY,			            XK_c,	            shiftview,	    { .i = 1 } },
@@ -152,6 +148,9 @@ static Key keys[] = {
 	{ MODKEY,			            XK_l,		        setlayout,	    {.v = &layouts[4]} }, /* deck */
 	{ MODKEY|ShiftMask,		        XK_l,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
 	{ MODKEY|ControlMask,	        XK_l,		        setmfact,      	{.f = +0.05} },
+
+    { MODKEY,                       XK_backslash,       view,           {.ui = ~0 } }, /* Show all tags */
+    { MODKEY|ShiftMask,             XK_backslash,       tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
 
     /* { MOD, XK_o,                 ACTION##stack,      {.i = 0 } }, \ */
     /* { MOD, XK_e,                 ACTION##stack,      {.i = INC(-1) } }, \ */

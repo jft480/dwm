@@ -96,7 +96,12 @@ static const Layout layouts[] = {
     { MOD, XK_g,                    ACTION##stack,  {.i = 0 } }, \
     { MOD, XK_c,                    ACTION##stack,  {.i = INC(-1) } }, \
     { MOD, XK_r,                    ACTION##stack,  {.i = INC(+1) } }, \
-    { MOD, XK_l,                    ACTION##stack,  {.i = PREVSEL } }, \
+    { MOD, XK_space,                ACTION##stack,  {.i = PREVSEL } }, \
+    { MOD, XK_ampersand,            ACTION##stack,  {.i = 1 } }, \
+    { MOD, XK_bracketleft,          ACTION##stack,  {.i = 2 } }, \
+    { MOD, XK_braceleft,            ACTION##stack,  {.i = 3 } }, \
+    { MOD, XK_braceright,           ACTION##stack,  {.i = 4 } }, \
+    { MOD, XK_parenright,           ACTION##stack,  {.i = 5 } }, \
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -145,11 +150,6 @@ static Key keys[] = {
 	{ MODKEY,			            XK_period,	        shiftview,	    { .i = 1 } },
 	{ MODKEY|ShiftMask,		        XK_period,	        shifttag,	    { .i = 1 } },
 
-    /* { MOD, XK_r,                 ACTION##stack,  {.i = PREVSEL } }, \ */
-    /* { MOD, XK_l,                 ACTION##stack,  {.i = 0 } }, \ */
-    /* { MOD, XK_c,                 ACTION##stack,  {.i = INC(-1) } }, \ */
-    /* { MOD, XK_g,                 ACTION##stack,  {.i = INC(+1) } }, \ */
-
 	{ MODKEY,			            XK_f,		        togglefullscr,	{0} },
 
     { MODKEY,                       XK_backslash,       view,           {.ui = ~0 } }, /* Show all tags */
@@ -165,7 +165,7 @@ static Key keys[] = {
     TAGKEYS(                        XK_t,               1)
     TAGKEYS(                        XK_n,               2)
     TAGKEYS(                        XK_s,               3)
-    TAGKEYS(                        XK_minus,           8)
+    TAGKEYS(                        XK_l,               8)
     TAGKEYS(                        XK_m,               4)
     TAGKEYS(                        XK_w,               5)
     TAGKEYS(                        XK_v,               6)
@@ -190,7 +190,7 @@ static Key keys[] = {
 
 	{ MODKEY|ControlMask,			XK_z,		        incrgaps,	    {.i = +3 } },
 
-	{ MODKEY,			            XK_space,		    view,		    {0} }, /* Switch to previous tag */
+	{ MODKEY,			            XK_minus,		    view,		    {0} }, /* Switch to previous tag */
 
 
 
@@ -220,8 +220,8 @@ static Key keys[] = {
 	{ MODKEY,			XK_F10,		spawn,		SHCMD("dmenuumount") },
 	{ MODKEY,			XK_F11,		spawn,		SHCMD("mpv --no-cache --no-osc --no-input-default-bindings --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
 	/* { MODKEY,			XK_F12,		xrdb,		{.v = NULL } }, */
-	{ MODKEY,			XK_space,	zoom,		{0} },
-	{ MODKEY|ShiftMask,		XK_space,	togglefloating,	{0} },
+	/* { MODKEY,			XK_space,	zoom,		{0} }, */
+	/* { MODKEY|ShiftMask,		XK_space,	togglefloating,	{0} }, */
 
 	{ 0,				XK_Print,	spawn,		SHCMD("maim pic-full-$(date '+%y%m%d-%H%M-%S').png") },
 	{ ShiftMask,			XK_Print,	spawn,		SHCMD("maimpick") },

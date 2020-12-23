@@ -155,29 +155,30 @@ static Key keys[] = {
     { MODKEY,                       XK_backslash,       view,           {.ui = ~0 } }, /* Show all tags */
     { MODKEY|ShiftMask,             XK_backslash,       tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
 
-	{ MODKEY,			            XK_u,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
-	{ MODKEY|ShiftMask,		        XK_u,		        setlayout,	    {.v = &layouts[4]} }, /* deck */
-	{ MODKEY|ControlMask,	        XK_u,		        setmfact,      	{.f = +0.05} },
-	{ MODKEY,			            XK_e,		        setlayout,	    {.v = &layouts[0]} }, /* tile */
-	{ MODKEY|ShiftMask,		        XK_e,		        setlayout,	    {.v = &layouts[1]} }, /* bstack */
+	{ MODKEY,			            XK_a,		        togglegaps,	    {0} },
+	{ MODKEY|ShiftMask,		        XK_a,		        defaultgaps,	{0} },
+	{ MODKEY,			            XK_o,		        setlayout,	    {.v = &layouts[0]} }, /* tile */
+	{ MODKEY|ShiftMask,		        XK_o,		        setlayout,	    {.v = &layouts[1]} }, /* bstack */
+	{ MODKEY,			            XK_e,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
+	{ MODKEY|ShiftMask,		        XK_e,		        setlayout,	    {.v = &layouts[4]} }, /* deck */
+	{ MODKEY|ControlMask,	        XK_e,		        setmfact,      	{.f = +0.05} },
+	{ MODKEY,			            XK_u,		        view,		    {0} }, /* Switch to previous tag */
+	{ MODKEY,			            XK_i,		        incnmaster,     {.i = +1 } },
+	{ MODKEY|ShiftMask,		        XK_i,		        incnmaster,     {.i = -1 } },
+	{ MODKEY,			            XK_d,		        spawn,          SHCMD("dmenu_run") },
+	{ MODKEY|ControlMask,			XK_h,		        setmfact,	    {.f = -0.05} },
 
     TAGKEYS(                        XK_h,               0)
     TAGKEYS(                        XK_t,               1)
     TAGKEYS(                        XK_n,               2)
     TAGKEYS(                        XK_s,               3)
-    TAGKEYS(                        XK_l,               8)
+	{ MODKEY|ControlMask,			XK_s,		        togglesticky,	{0} },
+    TAGKEYS(                        XK_minus,           8)
     TAGKEYS(                        XK_m,               4)
     TAGKEYS(                        XK_w,               5)
     TAGKEYS(                        XK_v,               6)
     TAGKEYS(                        XK_z,               7)
 
-	{ MODKEY,			            XK_a,		        togglegaps,	    {0} },
-	{ MODKEY|ShiftMask,		        XK_a,		        defaultgaps,	{0} },
-	{ MODKEY,			            XK_i,		        incnmaster,     {.i = +1 } },
-	{ MODKEY|ShiftMask,		        XK_i,		        incnmaster,     {.i = -1 } },
-	{ MODKEY,			            XK_d,		        spawn,          SHCMD("dmenu_run") },
-	{ MODKEY|ControlMask,			XK_h,		        setmfact,	    {.f = -0.05} },
-	{ MODKEY|ControlMask,			XK_s,		        togglesticky,	{0} },
 
 	{ MODKEY,			            XK_Return,	        spawn,		    {.v = termcmd } },
 	{ MODKEY|ShiftMask,		        XK_Return,	        togglescratch,	{.ui = 0} },
@@ -190,7 +191,6 @@ static Key keys[] = {
 
 	{ MODKEY|ControlMask,			XK_z,		        incrgaps,	    {.i = +3 } },
 
-	{ MODKEY,			            XK_minus,		    view,		    {0} }, /* Switch to previous tag */
 
 
 

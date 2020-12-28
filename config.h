@@ -67,8 +67,8 @@ static int resizehints = 1;    /* 1 means respect size hints in tiled resizals *
 #include "vanitygaps.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
- 	{ "[]=",	tile },			/* Default: Master on left, slaves on right */
 	{ "TTT",	bstack },		/* Master on top, slaves on bottom */
+ 	{ "[]=",	tile },			/* Default: Master on left, slaves on right */
 
 	{ "[@]",	spiral },		/* Fibonacci spiral */
 	{ "[\\]",	dwindle },		/* Decreasing in size right and leftward */
@@ -152,13 +152,15 @@ static Key keys[] = {
 
 	{ MODKEY,			            XK_f,		        togglefullscr,	{0} },
 
+	{ MODKEY,			            XK_l,		        setlayout,	    {.v = &layouts[0]} }, /* bstack */
+	{ MODKEY|ShiftMask,		        XK_l,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
     { MODKEY,                       XK_backslash,       view,           {.ui = ~0 } }, /* Show all tags */
     { MODKEY|ShiftMask,             XK_backslash,       tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
 
 	{ MODKEY,			            XK_a,		        togglegaps,	    {0} },
 	{ MODKEY|ShiftMask,		        XK_a,		        defaultgaps,	{0} },
-	{ MODKEY,			            XK_o,		        setlayout,	    {.v = &layouts[0]} }, /* tile */
-	{ MODKEY|ShiftMask,		        XK_o,		        setlayout,	    {.v = &layouts[1]} }, /* bstack */
+	{ MODKEY,			            XK_o,		        setlayout,	    {.v = &layouts[0]} }, /* bstack */
+	{ MODKEY|ShiftMask,		        XK_o,		        setlayout,	    {.v = &layouts[1]} }, /* tile */
 	{ MODKEY,			            XK_e,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
 	{ MODKEY|ShiftMask,		        XK_e,		        setlayout,	    {.v = &layouts[4]} }, /* deck */
 	{ MODKEY|ControlMask,	        XK_e,		        setmfact,      	{.f = +0.05} },

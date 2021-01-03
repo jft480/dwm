@@ -92,7 +92,6 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 #define STACKKEYS(MOD,ACTION) \
-    { MOD, XK_Tab,                  ACTION##stack,  {.i = PREVSEL } }, \
     { MOD, XK_g,                    ACTION##stack,  {.i = 0 } }, \
     { MOD, XK_c,                    ACTION##stack,  {.i = INC(-1) } }, \
     { MOD, XK_r,                    ACTION##stack,  {.i = INC(+1) } }, \
@@ -142,8 +141,7 @@ static Key keys[] = {
 
 	{ MODKEY,			            XK_BackSpace,	    spawn,		    SHCMD("sysact") },
 
-    /* { MOD, XK_Tab,               ACTION##stack,      {.i = PREVSEL } }, \ */
-
+	{ MODKEY,			            XK_Tab,		        view,		    {0} }, /* Switch to previous tag */
 
 	{ MODKEY,			            XK_comma,		    shiftview,	    { .i = -1 } },
 	{ MODKEY|ShiftMask,		        XK_comma,		    shifttag,	    { .i = -1 } },

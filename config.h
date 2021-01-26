@@ -95,7 +95,7 @@ static const Layout layouts[] = {
     { MOD, XK_g,                    ACTION##stack,  {.i = 0 } }, \
     { MOD, XK_c,                    ACTION##stack,  {.i = INC(-1) } }, \
     { MOD, XK_r,                    ACTION##stack,  {.i = INC(+1) } }, \
-    { MOD, XK_space,                ACTION##stack,  {.i = PREVSEL } }, \
+    { MOD, XK_l,                    ACTION##stack,  {.i = PREVSEL } }, \
     { MOD, XK_ampersand,            ACTION##stack,  {.i = 1 } }, \
     { MOD, XK_bracketleft,          ACTION##stack,  {.i = 2 } }, \
     { MOD, XK_braceleft,            ACTION##stack,  {.i = 3 } }, \
@@ -150,19 +150,17 @@ static Key keys[] = {
 
 	{ MODKEY,			            XK_f,		        togglefullscr,	{0} },
 
-	{ MODKEY,			            XK_l,		        setlayout,	    {.v = &layouts[0]} }, /* bstack */
-	{ MODKEY|ShiftMask,		        XK_l,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
     { MODKEY,                       XK_backslash,       view,           {.ui = ~0 } }, /* Show all tags */
     { MODKEY|ShiftMask,             XK_backslash,       tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
 
 	{ MODKEY,			            XK_a,		        togglegaps,	    {0} },
 	{ MODKEY|ShiftMask,		        XK_a,		        defaultgaps,	{0} },
-	{ MODKEY,			            XK_o,		        setlayout,	    {.v = &layouts[0]} }, /* bstack */
-	{ MODKEY|ShiftMask,		        XK_o,		        setlayout,	    {.v = &layouts[1]} }, /* tile */
-	{ MODKEY,			            XK_e,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
-	{ MODKEY|ShiftMask,		        XK_e,		        setlayout,	    {.v = &layouts[4]} }, /* deck */
-	{ MODKEY|ControlMask,	        XK_e,		        setmfact,      	{.f = +0.05} },
-	{ MODKEY,			            XK_u,		        view,		    {0} }, /* Switch to previous tag */
+
+	{ MODKEY,			            XK_e,		        setlayout,	    {.v = &layouts[0]} }, /* bstack */
+	{ MODKEY|ShiftMask,		        XK_e,		        setlayout,	    {.v = &layouts[1]} }, /* tile */
+	{ MODKEY,			            XK_u,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
+	{ MODKEY|ShiftMask,		        XK_u,		        setlayout,	    {.v = &layouts[4]} }, /* deck */
+	{ MODKEY|ControlMask,	        XK_u,		        setmfact,      	{.f = +0.05} },
 	{ MODKEY,			            XK_i,		        incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,		        XK_i,		        incnmaster,     {.i = -1 } },
 	{ MODKEY,			            XK_d,		        spawn,          SHCMD("dmenu_run") },
@@ -191,7 +189,7 @@ static Key keys[] = {
 
 	{ MODKEY|ControlMask,			XK_z,		        incrgaps,	    {.i = +3 } },
 
-
+	{ MODKEY,			            XK_space,	        view,		    {0} }, /* Switch to previous tag */
 
 
 

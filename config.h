@@ -95,12 +95,12 @@ static const Layout layouts[] = {
     { MOD, XK_g,                    ACTION##stack,  {.i = 0 } }, \
     { MOD, XK_c,                    ACTION##stack,  {.i = INC(-1) } }, \
     { MOD, XK_r,                    ACTION##stack,  {.i = INC(+1) } }, \
-    { MOD, XK_l,                    ACTION##stack,  {.i = PREVSEL } }, \
-    { MOD, XK_ampersand,            ACTION##stack,  {.i = 1 } }, \
-    { MOD, XK_bracketleft,          ACTION##stack,  {.i = 2 } }, \
-    { MOD, XK_braceleft,            ACTION##stack,  {.i = 3 } }, \
-    { MOD, XK_braceright,           ACTION##stack,  {.i = 4 } }, \
-    { MOD, XK_parenright,           ACTION##stack,  {.i = 5 } }, \
+    { MOD, XK_space,                ACTION##stack,  {.i = PREVSEL } }, \
+    /* { MOD, XK_ampersand,            ACTION##stack,  {.i = 1 } }, \ */
+    /* { MOD, XK_bracketleft,          ACTION##stack,  {.i = 2 } }, \ */
+    /* { MOD, XK_braceleft,            ACTION##stack,  {.i = 3 } }, \ */
+    /* { MOD, XK_braceright,           ACTION##stack,  {.i = 4 } }, \ */
+    /* { MOD, XK_parenright,           ACTION##stack,  {.i = 5 } }, \ */
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -169,9 +169,9 @@ static Key keys[] = {
     TAGKEYS(                        XK_h,               0)
     TAGKEYS(                        XK_t,               1)
     TAGKEYS(                        XK_n,               2)
-    TAGKEYS(                        XK_s,               3)
-	{ MODKEY|ControlMask,			XK_s,		        togglesticky,	{0} },
-    TAGKEYS(                        XK_minus,           8)
+    TAGKEYS(                        XK_minus,           3)
+	{ MODKEY|ControlMask,			XK_minus,		    togglesticky,	{0} },
+    TAGKEYS(                        XK_l,               8)
     TAGKEYS(                        XK_m,               4)
     TAGKEYS(                        XK_w,               5)
     TAGKEYS(                        XK_v,               6)
@@ -189,7 +189,7 @@ static Key keys[] = {
 
 	{ MODKEY|ControlMask,			XK_z,		        incrgaps,	    {.i = +3 } },
 
-	{ MODKEY,			            XK_space,	        view,		    {0} }, /* Switch to previous tag */
+	{ MODKEY,			            XK_s,	            view,		    {0} }, /* Switch to previous tag */
 
 
 

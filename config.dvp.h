@@ -156,17 +156,16 @@ static Key keys[] = {
 	{ MODKEY,			            XK_a,		        togglegaps,	    {0} },
 	{ MODKEY|ShiftMask,		        XK_a,		        defaultgaps,	{0} },
 
-	{ MODKEY,			            XK_e,		        setlayout,	    {.v = &layouts[0]} }, /* bstack */
-	{ MODKEY|ShiftMask,			    XK_s,		        setlayout,	    {.v = &layouts[0]} }, /* bstack */
-	{ MODKEY|ShiftMask,		        XK_e,		        setlayout,	    {.v = &layouts[1]} }, /* tile */
-	{ MODKEY,			            XK_s,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
-	{ MODKEY,			            XK_u,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
-	{ MODKEY|ShiftMask,		        XK_u,		        setlayout,	    {.v = &layouts[4]} }, /* deck */
+	{ MODKEY,		                XK_e,		        setlayout,	    {.v = &layouts[4]} }, /* deck */
+	{ MODKEY,			            XK_u,		        setlayout,	    {.v = &layouts[0]} }, /* bstack */
 	{ MODKEY|ControlMask,	        XK_u,		        setmfact,      	{.f = +0.05} },
 	{ MODKEY,			            XK_i,		        incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,		        XK_i,		        incnmaster,     {.i = -1 } },
 	{ MODKEY,			            XK_d,		        spawn,          SHCMD("dmenu_run") },
 	{ MODKEY|ControlMask,			XK_h,		        setmfact,	    {.f = -0.05} },
+
+	{ MODKEY,			            XK_s,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
+	{ MODKEY|ShiftMask,		        XK_s,		        setlayout,	    {.v = &layouts[1]} }, /* tile */
 
     TAGKEYS(                        XK_g,               0)
     TAGKEYS(                        XK_c,               1)

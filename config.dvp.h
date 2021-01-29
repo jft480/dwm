@@ -92,9 +92,9 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 #define STACKKEYS(MOD,ACTION) \
-    { MOD, XK_g,                    ACTION##stack,  {.i = 0 } }, \
-    { MOD, XK_c,                    ACTION##stack,  {.i = INC(-1) } }, \
-    { MOD, XK_r,                    ACTION##stack,  {.i = INC(+1) } }, \
+    { MOD, XK_h,                    ACTION##stack,  {.i = 0 } }, \
+    { MOD, XK_t,                    ACTION##stack,  {.i = INC(-1) } }, \
+    { MOD, XK_n,                    ACTION##stack,  {.i = INC(+1) } }, \
     { MOD, XK_space,                ACTION##stack,  {.i = PREVSEL } }, \
     /* { MOD, XK_ampersand,            ACTION##stack,  {.i = 1 } }, \ */
     /* { MOD, XK_bracketleft,          ACTION##stack,  {.i = 2 } }, \ */
@@ -157,7 +157,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		        XK_a,		        defaultgaps,	{0} },
 
 	{ MODKEY,			            XK_e,		        setlayout,	    {.v = &layouts[0]} }, /* bstack */
+	{ MODKEY|ShiftMask,			    XK_s,		        setlayout,	    {.v = &layouts[0]} }, /* bstack */
 	{ MODKEY|ShiftMask,		        XK_e,		        setlayout,	    {.v = &layouts[1]} }, /* tile */
+	{ MODKEY,			            XK_s,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
 	{ MODKEY,			            XK_u,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
 	{ MODKEY|ShiftMask,		        XK_u,		        setlayout,	    {.v = &layouts[4]} }, /* deck */
 	{ MODKEY|ControlMask,	        XK_u,		        setmfact,      	{.f = +0.05} },
@@ -166,16 +168,16 @@ static Key keys[] = {
 	{ MODKEY,			            XK_d,		        spawn,          SHCMD("dmenu_run") },
 	{ MODKEY|ControlMask,			XK_h,		        setmfact,	    {.f = -0.05} },
 
-    TAGKEYS(                        XK_h,               0)
-    TAGKEYS(                        XK_t,               1)
-    TAGKEYS(                        XK_n,               2)
-    TAGKEYS(                        XK_minus,           3)
-	{ MODKEY|ControlMask,			XK_minus,		    togglesticky,	{0} },
-    TAGKEYS(                        XK_l,               8)
+    TAGKEYS(                        XK_g,               0)
+    TAGKEYS(                        XK_c,               1)
+    TAGKEYS(                        XK_r,               2)
+    TAGKEYS(                        XK_l,               3)
+	{ MODKEY|ControlMask,			XK_l,		        togglesticky,	{0} },
     TAGKEYS(                        XK_m,               4)
     TAGKEYS(                        XK_w,               5)
     TAGKEYS(                        XK_v,               6)
     TAGKEYS(                        XK_z,               7)
+    TAGKEYS(                        XK_minus,           8)
 
 
 	{ MODKEY,			            XK_Return,	        spawn,		    {.v = termcmd } },
@@ -189,7 +191,7 @@ static Key keys[] = {
 
 	{ MODKEY|ControlMask,			XK_z,		        incrgaps,	    {.i = +3 } },
 
-	{ MODKEY,			            XK_s,	            view,		    {0} }, /* Switch to previous tag */
+	/* { MODKEY,			            XK_space,	        view,		    {0} }, /1* Switch to previous tag *1/ */
 
 
 

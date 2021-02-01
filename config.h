@@ -150,15 +150,15 @@ static Key keys[] = {
 
 	{ MODKEY,			            XK_f,		        togglefullscr,	{0} },
 
-    { MODKEY,                       XK_backslash,       view,           {.ui = ~0 } }, /* Show all tags */
-    { MODKEY|ShiftMask,             XK_backslash,       tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
+    { MODKEY,                       XK_u,               view,           {.ui = ~0 } }, /* Show all tags */
+    { MODKEY|ShiftMask,             XK_u,               tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
 
 	{ MODKEY,			            XK_a,		        togglegaps,	    {0} },
 	{ MODKEY|ShiftMask,		        XK_a,		        defaultgaps,	{0} },
 
-	{ MODKEY,		                XK_e,		        setlayout,	    {.v = &layouts[4]} }, /* deck */
-	{ MODKEY,			            XK_u,		        setlayout,	    {.v = &layouts[0]} }, /* bstack */
-	{ MODKEY|ControlMask,	        XK_u,		        setmfact,      	{.f = +0.05} },
+	{ MODKEY,			            XK_backslash,		setlayout,	    {.v = &layouts[0]} }, /* bstack */
+	{ MODKEY|ShiftMask,		        XK_backslash,		setlayout,	    {.v = &layouts[4]} }, /* deck */
+	{ MODKEY|ControlMask,	        XK_backslash,	    setmfact,      	{.f = +0.05} },
 	{ MODKEY,			            XK_i,		        incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,		        XK_i,		        incnmaster,     {.i = -1 } },
 	{ MODKEY,			            XK_d,		        spawn,          SHCMD("dmenu_run") },

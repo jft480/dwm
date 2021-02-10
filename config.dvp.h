@@ -94,8 +94,9 @@ static const Layout layouts[] = {
 #define STACKKEYS(MOD,ACTION) \
     { MOD, XK_h,                    ACTION##stack,  {.i = 0 } }, \
     { MOD, XK_t,                    ACTION##stack,  {.i = INC(-1) } }, \
-    { MOD, XK_n,                    ACTION##stack,  {.i = INC(+1) } }, \
-    { MOD, XK_space,                ACTION##stack,  {.i = PREVSEL } }, \
+    { MOD, XK_s,                    ACTION##stack,  {.i = PREVSEL } }, \
+    /* { MOD, XK_n,                    ACTION##stack,  {.i = INC(+1) } }, \ */
+    /* { MOD, XK_space,                ACTION##stack,  {.i = PREVSEL } }, \ */
     /* { MOD, XK_ampersand,            ACTION##stack,  {.i = 1 } }, \ */
     /* { MOD, XK_bracketleft,          ACTION##stack,  {.i = 2 } }, \ */
     /* { MOD, XK_braceleft,            ACTION##stack,  {.i = 3 } }, \ */
@@ -142,6 +143,7 @@ static Key keys[] = {
 	{ MODKEY,			            XK_BackSpace,	    spawn,		    SHCMD("sysact") },
 
 	{ MODKEY,			            XK_Tab,		        view,		    {0} }, /* Switch to previous tag */
+	{ MODKEY,			            XK_n,		        view,		    {0} }, /* Switch to previous tag */
 
 	{ MODKEY,			            XK_comma,		    shiftview,	    { .i = -1 } },
 	{ MODKEY|ShiftMask,		        XK_comma,		    shifttag,	    { .i = -1 } },
@@ -164,8 +166,8 @@ static Key keys[] = {
 	{ MODKEY,			            XK_d,		        spawn,          SHCMD("dmenu_run") },
 	{ MODKEY|ControlMask,			XK_h,		        setmfact,	    {.f = -0.05} },
 
-	{ MODKEY,			            XK_s,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
-	{ MODKEY|ShiftMask,		        XK_s,		        setlayout,	    {.v = &layouts[1]} }, /* tile */
+	{ MODKEY,			            XK_minus,		    setlayout,	    {.v = &layouts[5]} }, /* monocle */
+	{ MODKEY|ShiftMask,		        XK_minus,		    setlayout,	    {.v = &layouts[1]} }, /* tile */
 
     TAGKEYS(                        XK_g,               0)
     TAGKEYS(                        XK_c,               1)
@@ -176,7 +178,7 @@ static Key keys[] = {
     TAGKEYS(                        XK_w,               5)
     TAGKEYS(                        XK_v,               6)
     TAGKEYS(                        XK_z,               7)
-    TAGKEYS(                        XK_minus,           8)
+    TAGKEYS(                        XK_space,           8)
 
 
 	{ MODKEY,			            XK_Return,	        spawn,		    {.v = termcmd } },

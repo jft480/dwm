@@ -92,7 +92,7 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 #define STACKKEYS(MOD,ACTION) \
-    { MOD, XK_minus,                ACTION##stack,  {.i = INC(-1) } }, \
+    { MOD, XK_d,                    ACTION##stack,  {.i = INC(-1) } }, \
     { MOD, XK_h,                    ACTION##stack,  {.i = 0 } }, \
     { MOD, XK_t,                    ACTION##stack,  {.i = 1 } }, \
     { MOD, XK_n,                    ACTION##stack,  {.i = 2 } }, \
@@ -165,8 +165,9 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_o,               tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
 	{ MODKEY,			            XK_i,		        incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,		        XK_i,		        incnmaster,     {.i = -1 } },
-	{ MODKEY|ControlMask,			XK_d,		        spawn,          SHCMD("dmenu_run") },
-    TAGKEYS(                        XK_d,               8)
+
+	{ MODKEY|ControlMask,			XK_minus,		    spawn,          SHCMD("dmenu_run") },
+    TAGKEYS(                        XK_minus,           8)
 
     TAGKEYS(                        XK_g,               1)
     TAGKEYS(                        XK_c,               3)

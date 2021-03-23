@@ -92,10 +92,9 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 #define STACKKEYS(MOD,ACTION) \
-    { MOD, XK_h,                    ACTION##stack,  {.i = 0 } }, \
-    { MOD, XK_t,                    ACTION##stack,  {.i = 1 } }, \
-    { MOD, XK_n,                    ACTION##stack,  {.i = 2 } }, \
-    { MOD, XK_s,                    ACTION##stack,  {.i = INC(-1) } }, \
+    { MOD, XK_d,                    ACTION##stack,  {.i = 0 } }, \
+    { MOD, XK_minus,                ACTION##stack,  {.i = 1 } }, \
+    { MOD, XK_s,                    ACTION##stack,  {.i = INC(+1) } }, \
     { MOD, XK_space,                ACTION##stack,  {.i = PREVSEL } }, \
     /* { MOD, XK_t,                    ACTION##stack,  {.i = INC(-1) } }, \ */
     /* { MOD, XK_n,                    ACTION##stack,  {.i = INC(+1) } }, \ */
@@ -162,13 +161,12 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_o,               tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
 	{ MODKEY,			            XK_i,		        incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,		        XK_i,		        incnmaster,     {.i = -1 } },
-
-	{ MODKEY,			            XK_d,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
-	{ MODKEY|ShiftMask,			    XK_d,		        setlayout,	    {.v = &layouts[1]} }, /* tile */
 	{ MODKEY|ControlMask,			XK_d,		        setmfact,	    {.f = -0.05} },
+	{ MODKEY,		                XK_h,		        setlayout,	    {.v = &layouts[0]} }, /* deck */
+	{ MODKEY,		                XK_t,		        setlayout,	    {.v = &layouts[4]} }, /* bstack */
+	{ MODKEY|ShiftMask,			    XK_t,		        setlayout,	    {.v = &layouts[1]} }, /* tile */
+	{ MODKEY,			            XK_n,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
 
-	{ MODKEY,		                XK_minus,		    setlayout,	    {.v = &layouts[0]} }, /* deck */
-	{ MODKEY|ShiftMask,		        XK_minus,		    setlayout,	    {.v = &layouts[4]} }, /* bstack */
 	{ MODKEY|ControlMask,	        XK_minus,	        setmfact,      	{.f = +0.05} },
 
     TAGKEYS(                        XK_g,               1)

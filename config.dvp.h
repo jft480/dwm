@@ -146,7 +146,8 @@ static Key keys[] = {
 	{ MODKEY,			            XK_BackSpace,	    spawn,		    SHCMD("sysact") },
 	{ MODKEY|ShiftMask,			    XK_BackSpace,	    killclient,		{0} },
 
-	{ MODKEY,			            XK_Tab,		    view,		    {0} }, /* Switch to previous tag */
+	{ MODKEY,			            XK_Tab,		        view,		    {0} }, /* Switch to previous tag */
+	{ MODKEY,			            XK_space,		    view,		    {0} }, /* Switch to previous tag */
 	/* { MODKEY,			            XK_Tab,		        view,		    {0} }, /1* Switch to previous tag *1/ */
 	{ MODKEY,			            XK_semicolon,		togglegaps,	    {0} },
 	{ MODKEY|ShiftMask,		        XK_semicolon,		defaultgaps,	{0} },
@@ -173,10 +174,10 @@ static Key keys[] = {
     TAGKEYS(                        XK_l,               7)
 	{ MODKEY|ControlMask,			XK_l,		        togglesticky,	{0} },
 
-    TAGKEYS(                        XK_e,               1)
-    TAGKEYS(                        XK_u,               0)
-    TAGKEYS(                        XK_period,          2)
-    TAGKEYS(                        XK_p,               3)
+    TAGKEYS(                        XK_parenright,      0)
+    TAGKEYS(                        XK_plus,            1)
+    TAGKEYS(                        XK_bracketright,    2)
+    TAGKEYS(                        XK_exclam,          3)
 	{ MODKEY|ControlMask,			XK_backslash,		spawn,          SHCMD("dmenu_run") },
     TAGKEYS(                        XK_backslash,       8)
 

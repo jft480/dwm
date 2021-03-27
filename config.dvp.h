@@ -92,10 +92,10 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 #define STACKKEYS(MOD,ACTION) \
-    { MOD, XK_h,                    ACTION##stack,  {.i = INC(-1) } }, \
-    { MOD, XK_t,                    ACTION##stack,  {.i = INC(+1) } }, \
-    { MOD, XK_n,                    ACTION##stack,  {.i = 0 } }, \
-    { MOD, XK_s,                    ACTION##stack,  {.i = PREVSEL } }, \
+    { MOD, XK_g,                    ACTION##stack,  {.i = INC(-1) } }, \
+    { MOD, XK_c,                    ACTION##stack,  {.i = INC(+1) } }, \
+    { MOD, XK_r,                    ACTION##stack,  {.i = 0 } }, \
+    { MOD, XK_minus,                ACTION##stack,  {.i = PREVSEL } }, \
     /* { MOD, XK_space,                ACTION##stack,  {.i = PREVSEL } }, \ */
     /* { MOD, XK_t,                    ACTION##stack,  {.i = INC(-1) } }, \ */
     /* { MOD, XK_n,                    ACTION##stack,  {.i = INC(+1) } }, \ */
@@ -165,19 +165,19 @@ static Key keys[] = {
 	{ MODKEY,		                XK_d,		        setlayout,	    {.v = &layouts[0]} }, /* deck */
 	{ MODKEY|ControlMask,			XK_d,		        setmfact,	    {.f = -0.05} },
 
-	{ MODKEY,			            XK_minus,		    view,		    {0} }, /* Switch to previous tag */
+	/* { MODKEY,			            XK_minus,		    view,		    {0} }, /1* Switch to previous tag *1/ */
 	{ MODKEY|ControlMask,	        XK_minus,	        setmfact,      	{.f = +0.05} },
 
-    TAGKEYS(                        XK_g,               4)
-    TAGKEYS(                        XK_c,               5)
-    TAGKEYS(                        XK_r,               6)
-    TAGKEYS(                        XK_l,               7)
-	{ MODKEY|ControlMask,			XK_l,		        togglesticky,	{0} },
+    TAGKEYS(                        XK_h,               0)
+    TAGKEYS(                        XK_t,               1)
+    TAGKEYS(                        XK_n,               2)
+    TAGKEYS(                        XK_s,               3)
+	{ MODKEY|ControlMask,			XK_s,		        togglesticky,	{0} },
 
-    TAGKEYS(                        XK_parenright,      0)
-    TAGKEYS(                        XK_plus,            1)
-    TAGKEYS(                        XK_bracketright,    2)
-    TAGKEYS(                        XK_exclam,          3)
+    TAGKEYS(                        XK_parenright,      4)
+    TAGKEYS(                        XK_plus,            5)
+    TAGKEYS(                        XK_bracketright,    6)
+    TAGKEYS(                        XK_exclam,          7)
 	{ MODKEY|ControlMask,			XK_backslash,		spawn,          SHCMD("dmenu_run") },
     TAGKEYS(                        XK_backslash,       8)
 

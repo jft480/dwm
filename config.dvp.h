@@ -92,16 +92,16 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 #define STACKKEYS(MOD,ACTION) \
-    { MOD, XK_g,                    ACTION##stack,  {.i = INC(-1) } }, \
-    { MOD, XK_c,                    ACTION##stack,  {.i = INC(+1) } }, \
-    { MOD, XK_r,                    ACTION##stack,  {.i = 0 } }, \
-    { MOD, XK_l,                    ACTION##stack,  {.i = PREVSEL } }, \
+    { MOD, XK_Tab,                  ACTION##stack,  {.i = PREVSEL } }, \
+    { MOD, XK_o,                    ACTION##stack,  {.i = 2 } }, \
+    { MOD, XK_e,                    ACTION##stack,  {.i = 1 } }, \
+    { MOD, XK_u,                    ACTION##stack,  {.i = 0 } }, \
+    { MOD, XK_minus,                ACTION##stack,  {.i = INC(-1) } }, \
+    /* { MOD, XK_r,                    ACTION##stack,  {.i = INC(+1) } }, \ */
     /* { MOD, XK_space,                ACTION##stack,  {.i = PREVSEL } }, \ */
     /* { MOD, XK_t,                    ACTION##stack,  {.i = INC(-1) } }, \ */
     /* { MOD, XK_n,                    ACTION##stack,  {.i = INC(+1) } }, \ */
     /* { MOD, XK_space,                ACTION##stack,  {.i = PREVSEL } }, \ */
-    /* { MOD, XK_ampersand,            ACTION##stack,  {.i = 1 } }, \ */
-    /* { MOD, XK_bracketleft,          ACTION##stack,  {.i = 2 } }, \ */
     /* { MOD, XK_braceleft,            ACTION##stack,  {.i = 3 } }, \ */
     /* { MOD, XK_braceright,           ACTION##stack,  {.i = 4 } }, \ */
     /* { MOD, XK_parenright,           ACTION##stack,  {.i = 5 } }, \ */
@@ -146,20 +146,20 @@ static Key keys[] = {
 	{ MODKEY,			            XK_BackSpace,	    spawn,		    SHCMD("sysact") },
 	{ MODKEY|ShiftMask,			    XK_BackSpace,	    killclient,		{0} },
 
-	{ MODKEY,			            XK_Tab,		        view,		    {0} }, /* Switch to previous tag */
+	/* { MODKEY,			            XK_Tab,		        view,		    {0} }, /1* Switch to previous tag *1/ */
 	{ MODKEY,			            XK_space,		    view,		    {0} }, /* Switch to previous tag */
 	/* { MODKEY,			            XK_Tab,		        view,		    {0} }, /1* Switch to previous tag *1/ */
 	{ MODKEY,			            XK_semicolon,		togglegaps,	    {0} },
 	{ MODKEY|ShiftMask,		        XK_semicolon,		defaultgaps,	{0} },
 	{ MODKEY,			            XK_comma,		    shiftview,	    { .i = -1 } },
 	{ MODKEY|ShiftMask,		        XK_comma,		    shifttag,	    { .i = -1 } },
+	{ MODKEY,			            XK_period,	        shiftview,	    { .i = 1 } },
+	{ MODKEY|ShiftMask,		        XK_period,	        shifttag,	    { .i = 1 } },
 
 	{ MODKEY,			            XK_f,		        togglefullscr,	{0} },
 
     { MODKEY,                       XK_a,               view,           {.ui = ~0 } }, /* Show all tags */
     { MODKEY|ShiftMask,             XK_a,               tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
-	{ MODKEY,			            XK_o,	            shiftview,	    { .i = 1 } },
-	{ MODKEY|ShiftMask,		        XK_o,	            shifttag,	    { .i = 1 } },
 	{ MODKEY,			            XK_i,		        incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,		        XK_i,		        incnmaster,     {.i = -1 } },
 	{ MODKEY,		                XK_d,		        setlayout,	    {.v = &layouts[0]} }, /* deck */
@@ -174,10 +174,10 @@ static Key keys[] = {
     TAGKEYS(                        XK_s,               3)
 	{ MODKEY|ControlMask,			XK_s,		        togglesticky,	{0} },
 
-    TAGKEYS(                        XK_parenright,      4)
-    TAGKEYS(                        XK_plus,            5)
-    TAGKEYS(                        XK_bracketright,    6)
-    TAGKEYS(                        XK_exclam,          7)
+    TAGKEYS(                        XK_m,               4)
+    TAGKEYS(                        XK_w,               5)
+    TAGKEYS(                        XK_v,               6)
+    TAGKEYS(                        XK_z,               7)
 	{ MODKEY|ControlMask,			XK_backslash,		spawn,          SHCMD("dmenu_run") },
     TAGKEYS(                        XK_backslash,       8)
 
@@ -192,7 +192,7 @@ static Key keys[] = {
 	{ MODKEY,		                XK_b,		        setlayout,	    {.v = &layouts[4]} }, /* bstack */
 	{ MODKEY|ShiftMask,			    XK_b,		        setlayout,	    {.v = &layouts[1]} }, /* tile */
 	{ MODKEY|ControlMask,			XK_b,		        togglebar,	    {0} },
-	{ MODKEY,			            XK_m,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
+	{ MODKEY,			            XK_l,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
 
 	{ MODKEY|ControlMask,			XK_z,		        incrgaps,	    {.i = +3 } },
 

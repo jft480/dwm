@@ -44,7 +44,7 @@ static Sp scratchpads[] = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "1b", "2b", "3b", "4b", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -93,9 +93,10 @@ static const Layout layouts[] = {
 
 #define STACKKEYS(MOD,ACTION) \
     { MOD, XK_Tab,                  ACTION##stack,  {.i = PREVSEL } }, \
-    { MOD, XK_o,                    ACTION##stack,  {.i = 2 } }, \
-    { MOD, XK_e,                    ACTION##stack,  {.i = 1 } }, \
-    { MOD, XK_u,                    ACTION##stack,  {.i = 0 } }, \
+    { MOD, XK_r,                    ACTION##stack,  {.i = 0 } }, \
+    { MOD, XK_c,                    ACTION##stack,  {.i = 1 } }, \
+    { MOD, XK_g,                    ACTION##stack,  {.i = 2 } }, \
+    { MOD, XK_u,                    ACTION##stack,  {.i = PREVSEL } }, \
     { MOD, XK_minus,                ACTION##stack,  {.i = INC(-1) } }, \
     /* { MOD, XK_r,                    ACTION##stack,  {.i = INC(+1) } }, \ */
     /* { MOD, XK_space,                ACTION##stack,  {.i = PREVSEL } }, \ */
@@ -151,10 +152,10 @@ static Key keys[] = {
 	/* { MODKEY,			            XK_Tab,		        view,		    {0} }, /1* Switch to previous tag *1/ */
 	{ MODKEY,			            XK_semicolon,		togglegaps,	    {0} },
 	{ MODKEY|ShiftMask,		        XK_semicolon,		defaultgaps,	{0} },
-	{ MODKEY,			            XK_comma,		    shiftview,	    { .i = -1 } },
-	{ MODKEY|ShiftMask,		        XK_comma,		    shifttag,	    { .i = -1 } },
-	{ MODKEY,			            XK_period,	        shiftview,	    { .i = 1 } },
-	{ MODKEY|ShiftMask,		        XK_period,	        shifttag,	    { .i = 1 } },
+	{ MODKEY,			            XK_o,		        shiftview,	    { .i = -1 } },
+	{ MODKEY|ShiftMask,		        XK_o,		        shifttag,	    { .i = -1 } },
+	{ MODKEY,			            XK_e,	            shiftview,	    { .i = 1 } },
+	{ MODKEY|ShiftMask,		        XK_e,	            shifttag,	    { .i = 1 } },
 
 	{ MODKEY,			            XK_f,		        togglefullscr,	{0} },
 
@@ -261,8 +262,8 @@ static Key keys[] = {
 	{ 0, XF86XK_TouchpadToggle,	spawn,		SHCMD("(synclient | grep 'TouchpadOff.*1' && synclient TouchpadOff=0) || synclient TouchpadOff=1") },
 	{ 0, XF86XK_TouchpadOff,	spawn,		SHCMD("synclient TouchpadOff=1") },
 	{ 0, XF86XK_TouchpadOn,		spawn,		SHCMD("synclient TouchpadOff=0") },
-	{ 0, XF86XK_MonBrightnessUp,	spawn,		SHCMD("xbacklight -inc 15") },
-	{ 0, XF86XK_MonBrightnessDown,	spawn,		SHCMD("xbacklight -dec 15") },
+	{ 0, XF86XK_MonBrightnessUp,	spawn,		SHCMD("xbacklight -inc 1") },
+	{ 0, XF86XK_MonBrightnessDown,	spawn,		SHCMD("xbacklight -dec 1") },
 
 };
 

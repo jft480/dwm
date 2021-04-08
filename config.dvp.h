@@ -156,8 +156,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_a,               tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
 	{ MODKEY,			            XK_o,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
 
-	{ MODKEY,			            XK_u,		        incrgaps,	    {.i = -3 } },
-	{ MODKEY|ShiftMask,			    XK_u,		        incrgaps,	    {.i = +3 } },
+	{ MODKEY,			            XK_u,		        togglebar,	    {0} },
 
 	{ MODKEY,			            XK_i,		        setmfact,	    {.f = -0.05} },
 	{ MODKEY|ShiftMask,	            XK_i,	            setmfact,      	{.f = +0.05} },
@@ -184,7 +183,8 @@ static Key keys[] = {
 
 	{ MODKEY,			            XK_apostrophe,	    togglescratch,	{.ui = 1} },
 
-	{ MODKEY,			            XK_k,		        togglebar,	    {0} },
+	{ MODKEY,			            XK_k,		        incrgaps,	    {.i = -3 } },
+	{ MODKEY|ShiftMask,			    XK_k,		        incrgaps,	    {.i = +3 } },
 	{ MODKEY,			            XK_x,	            spawn,		    SHCMD("xscreensaver-command --activate") },
 	{ MODKEY,		                XK_b,		        setlayout,	    {.v = &layouts[4]} }, /* bstack */
 	{ MODKEY|ShiftMask,			    XK_b,		        setlayout,	    {.v = &layouts[1]} }, /* tile */

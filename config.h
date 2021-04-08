@@ -157,6 +157,7 @@ static Key keys[] = {
 	{ MODKEY,			            XK_o,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
 
 	{ MODKEY,			            XK_u,		        togglebar,	    {0} },
+	{ MODKEY|ShiftMask,		        XK_u,	            togglescratch,	{.ui = 0} },
 
 	{ MODKEY,			            XK_i,		        setmfact,	    {.f = -0.05} },
 	{ MODKEY|ShiftMask,	            XK_i,	            setmfact,      	{.f = +0.05} },
@@ -179,7 +180,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,			    XK_s,		        togglesticky,	{0} },
 
 	{ MODKEY,			            XK_Return,	        spawn,		    {.v = termcmd } },
-	{ MODKEY|ShiftMask,		        XK_Return,	        togglescratch,	{.ui = 0} },
 
 	{ MODKEY,			            XK_apostrophe,	    togglescratch,	{.ui = 1} },
 

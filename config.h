@@ -13,7 +13,7 @@ static unsigned int gappiv    = 10;       /* vert inner gap between windows */
 static unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
 static unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */
 static int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
-static int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
+static int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
 /* static char *fonts[]          = { "monospace:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true"  }; */
@@ -35,7 +35,8 @@ typedef struct {
 	const void *cmd;
 } Sp;
 
-const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL };
+/* const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL }; */
+const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "135x50", NULL };
 const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
@@ -141,14 +142,14 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,			    XK_BackSpace,	    killclient,		{0} },
 
 	{ MODKEY,			            XK_Tab,		        view,		    {0} }, /* Switch to previous tag */
-	{ MODKEY,			            XK_semicolon,		togglegaps,	    {0} },
-	{ MODKEY|ShiftMask,		        XK_semicolon,		defaultgaps,	{0} },
+	{ MODKEY,			            XK_semicolon,		incnmaster,     {.i = +1 } },
+	{ MODKEY|ShiftMask,		        XK_semicolon,		incnmaster,     {.i = -1 } },
 	{ MODKEY,			            XK_comma,		    shiftview,	    { .i = -1 } },
 	{ MODKEY|ShiftMask,		        XK_comma,		    shifttag,	    { .i = -1 } },
 	{ MODKEY,			            XK_period,	        shiftview,	    { .i = 1 } },
 	{ MODKEY|ShiftMask,		        XK_period,	        shifttag,	    { .i = 1 } },
-	{ MODKEY,			            XK_p,		        incnmaster,     {.i = +1 } },
-	{ MODKEY|ShiftMask,		        XK_p,		        incnmaster,     {.i = -1 } },
+	{ MODKEY,			            XK_p,		        togglegaps,	    {0} },
+	{ MODKEY|ShiftMask,		        XK_p,		        defaultgaps,	{0} },
 
 	{ MODKEY,			            XK_f,		        togglefullscr,	{0} },
 
@@ -156,8 +157,8 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_a,               tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
 	{ MODKEY,			            XK_o,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
 
-	{ MODKEY,			            XK_u,		        togglebar,	    {0} },
-	{ MODKEY|ShiftMask,		        XK_u,	            togglescratch,	{.ui = 0} },
+	{ MODKEY,		                XK_u,	            togglescratch,	{.ui = 0} },
+	{ MODKEY|ShiftMask,			    XK_u,		        togglebar,	    {0} },
 
 	{ MODKEY,			            XK_i,		        setmfact,	    {.f = -0.05} },
 	{ MODKEY|ShiftMask,	            XK_i,	            setmfact,      	{.f = +0.05} },
@@ -183,9 +184,9 @@ static Key keys[] = {
 
 	{ MODKEY,			            XK_apostrophe,	    togglescratch,	{.ui = 1} },
 
-	{ MODKEY,			            XK_k,		        incrgaps,	    {.i = -3 } },
-	{ MODKEY|ShiftMask,			    XK_k,		        incrgaps,	    {.i = +3 } },
-	{ MODKEY,			            XK_x,	            spawn,		    SHCMD("xscreensaver-command --activate") },
+	{ MODKEY,			            XK_k,	            spawn,		    SHCMD("xscreensaver-command --activate") },
+	{ MODKEY,			            XK_x,		        incrgaps,	    {.i = -3 } },
+	{ MODKEY|ShiftMask,			    XK_x,		        incrgaps,	    {.i = +3 } },
 	{ MODKEY,		                XK_b,		        setlayout,	    {.v = &layouts[4]} }, /* bstack */
 	{ MODKEY|ShiftMask,			    XK_b,		        setlayout,	    {.v = &layouts[1]} }, /* tile */
 

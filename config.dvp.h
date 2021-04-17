@@ -98,9 +98,9 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 #define STACKKEYS(MOD,ACTION) \
-    { MOD, XK_h,                    ACTION##stack,  {.i = 0 } }, \
-    { MOD, XK_t,                    ACTION##stack,  {.i = INC(-1) } }, \
-    { MOD, XK_n,                    ACTION##stack,  {.i = INC(+1) } }, \
+    { MOD, XK_u,                    ACTION##stack,  {.i = 0 } }, \
+    { MOD, XK_e,                    ACTION##stack,  {.i = INC(+1) } }, \
+    { MOD, XK_minus,                ACTION##stack,  {.i = INC(-1) } }, \
     { MOD, XK_Tab,                  ACTION##stack,  {.i = PREVSEL } }, \
     /* { MOD, XK_,                    ACTION##stack,  {.i = INC(-1) } }, \ */
     /* { MOD, XK_,                    ACTION##stack,  {.i = 1 } }, \ */
@@ -145,23 +145,22 @@ static Key keys[] = {
 	{ MODKEY,			            XK_BackSpace,	    spawn,		    SHCMD("sysact") },
 	{ MODKEY|ShiftMask,			    XK_BackSpace,	    killclient,		{0} },
 
-	/* { MODKEY,			            XK_Tab,		        view,		    {0} }, /1* Switch to previous tag *1/ */
 	{ MODKEY,			            XK_semicolon,		incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,		        XK_semicolon,		incnmaster,     {.i = -1 } },
-	{ MODKEY,			            XK_comma,		    shiftview,	    { .i = -1 } },
-	{ MODKEY|ShiftMask,		        XK_comma,		    shifttag,	    { .i = -1 } },
-	{ MODKEY,			            XK_period,	        shiftview,	    { .i = 1 } },
-	{ MODKEY|ShiftMask,		        XK_period,	        shifttag,	    { .i = 1 } },
-	{ MODKEY,			            XK_p,		        togglegaps,	    {0} },
-	{ MODKEY|ShiftMask,		        XK_p,		        defaultgaps,	{0} },
+	{ MODKEY,			            XK_q,		        shiftview,	    { .i = -1 } },
+	{ MODKEY|ShiftMask,		        XK_q,		        shifttag,	    { .i = -1 } },
+	{ MODKEY,			            XK_j,	            shiftview,	    { .i = 1 } },
+	{ MODKEY|ShiftMask,		        XK_j,	            shifttag,	    { .i = 1 } },
+	{ MODKEY,			            XK_y,		        togglegaps,	    {0} },
+	{ MODKEY|ShiftMask,		        XK_y,		        defaultgaps,	{0} },
 
 	{ MODKEY,			            XK_f,		        togglefullscr,	{0} },
 
-    { MODKEY|ControlMask,                       XK_a,               view,           {.ui = ~0 } }, /* Show all tags */
-    { MODKEY|ShiftMask,             XK_a,               tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
-	{ MODKEY,			            XK_o,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
-	{ MODKEY,			            XK_e,		        togglebar,	    {0} },
-	{ MODKEY,		                XK_space,	        togglescratch,	{.ui = 0} },
+    { MODKEY|ControlMask,           XK_p,               view,           {.ui = ~0 } }, /* Show all tags */
+    { MODKEY|ShiftMask,             XK_p,               tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
+	{ MODKEY,			            XK_comma,		    setlayout,	    {.v = &layouts[5]} }, /* monocle */
+	{ MODKEY,			            XK_period,		    togglebar,	    {0} },
+	{ MODKEY,		                XK_n,	            togglescratch,	{.ui = 0} },
 	{ MODKEY,			            XK_s,	            togglescratch,	{.ui = 1} },
 
 	{ MODKEY,			            XK_i,		        setmfact,	    {.f = -0.05} },
@@ -182,7 +181,8 @@ static Key keys[] = {
     TAGKEYS(                        XK_z,               7)
     TAGKEYS(                        XK_backslash,       8)
 
-	{ MODKEY,			            XK_u,		        view,		    {0} }, /* Switch to previous tag */
+	{ MODKEY,			            XK_a,		        view,		    {0} }, /* Switch to previous tag */
+	{ MODKEY,			            XK_h,		        view,		    {0} }, /* Switch to previous tag */
 	{ MODKEY|ShiftMask,			    XK_s,		        togglesticky,	{0} },
 
 	{ MODKEY,			            XK_Return,	        spawn,		    {.v = termcmd } },
@@ -291,20 +291,6 @@ static Button buttons[] = {
 	{ ClkTagBar,		0,		Button5,	shiftview,	{.i = 1} },
 	{ ClkRootWin,		0,		Button2,	togglebar,	{0} },
 };
-
-
-
-
-/* #define STACKKEYS(MOD,ACTION) \ */
-/* 	{ MOD,	XK_j,	ACTION##stack,	{.i = INC(+1) } }, \ */
-/* 	{ MOD,	XK_k,	ACTION##stack,	{.i = INC(-1) } }, \ */
-/* 	{ MOD,  XK_v,   ACTION##stack,  {.i = 0 } }, \ */
-	/* { MOD, XK_grave, ACTION##stack, {.i = PREVSEL } }, \ */
-	/* { MOD, XK_a,     ACTION##stack, {.i = 1 } }, \ */
-	/* { MOD, XK_z,     ACTION##stack, {.i = 2 } }, \ */
-	/* { MOD, XK_x,     ACTION##stack, {.i = -1 } }, */
-
-
 
 /*
  * Xresources preferences to load at startup

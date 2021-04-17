@@ -99,7 +99,8 @@ static const Layout layouts[] = {
 
 #define STACKKEYS(MOD,ACTION) \
     { MOD, XK_h,                    ACTION##stack,  {.i = 0 } }, \
-    { MOD, XK_t,                    ACTION##stack,  {.i = INC(+1) } }, \
+    { MOD, XK_t,                    ACTION##stack,  {.i = INC(-1) } }, \
+    { MOD, XK_n,                    ACTION##stack,  {.i = INC(+1) } }, \
     { MOD, XK_Tab,                  ACTION##stack,  {.i = PREVSEL } }, \
     /* { MOD, XK_,                    ACTION##stack,  {.i = INC(-1) } }, \ */
     /* { MOD, XK_,                    ACTION##stack,  {.i = 1 } }, \ */
@@ -160,8 +161,8 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_a,               tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
 	{ MODKEY,			            XK_o,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
 	{ MODKEY,			            XK_e,		        togglebar,	    {0} },
-	{ MODKEY,		                XK_s,	            togglescratch,	{.ui = 0} },
-	{ MODKEY,			            XK_n,	            togglescratch,	{.ui = 1} },
+	{ MODKEY,		                XK_space,	        togglescratch,	{.ui = 0} },
+	{ MODKEY,			            XK_s,	            togglescratch,	{.ui = 1} },
 
 	{ MODKEY,			            XK_i,		        setmfact,	    {.f = -0.05} },
 	{ MODKEY|ShiftMask,	            XK_i,	            setmfact,      	{.f = +0.05} },

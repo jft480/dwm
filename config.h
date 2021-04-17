@@ -8,10 +8,14 @@
 /* static unsigned int borderpx  = 3;        /1* border pixel of windows *1/ */
 static unsigned int borderpx  = 1;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
-static unsigned int gappih    = 20;       /* horiz inner gap between windows */
-static unsigned int gappiv    = 10;       /* vert inner gap between windows */
-static unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
-static unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */
+/* static unsigned int gappih    = 20;       /1* horiz inner gap between windows *1/ */
+static unsigned int gappih    = 5;       /* horiz inner gap between windows */
+/* static unsigned int gappiv    = 10;       /1* vert inner gap between windows *1/ */
+static unsigned int gappiv    = 5;       /* vert inner gap between windows */
+/* static unsigned int gappoh    = 10;       /1* horiz outer gap between windows and screen edge *1/ */
+static unsigned int gappoh    = 1;       /* horiz outer gap between windows and screen edge */
+/* static unsigned int gappov    = 30;       /1* vert outer gap between windows and screen edge *1/ */
+static unsigned int gappov    = 1;       /* vert outer gap between windows and screen edge */
 static int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 static int showbar            = 1;        /* 0 means no bar */
@@ -37,7 +41,8 @@ typedef struct {
 
 /* const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL }; */
 const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "135x50", NULL };
-const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL };
+const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-g", "115x50", NULL };
+/* const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL }; */
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
@@ -93,13 +98,11 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 #define STACKKEYS(MOD,ACTION) \
-    { MOD, XK_space,                ACTION##stack,  {.i = PREVSEL } }, \
     { MOD, XK_h,                    ACTION##stack,  {.i = 0 } }, \
-    { MOD, XK_t,                    ACTION##stack,  {.i = 1 } }, \
-    { MOD, XK_n,                    ACTION##stack,  {.i = 2 } }, \
-    { MOD, XK_s,                    ACTION##stack,  {.i = PREVSEL } }, \
-    { MOD, XK_minus,                ACTION##stack,  {.i = INC(-1) } }, \
-    /* { MOD, XK_r,                    ACTION##stack,  {.i = INC(+1) } }, \ */
+    { MOD, XK_t,                    ACTION##stack,  {.i = INC(+1) } }, \
+    { MOD, XK_Tab,                  ACTION##stack,  {.i = PREVSEL } }, \
+    /* { MOD, XK_,                    ACTION##stack,  {.i = INC(-1) } }, \ */
+    /* { MOD, XK_,                    ACTION##stack,  {.i = 1 } }, \ */
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -141,7 +144,7 @@ static Key keys[] = {
 	{ MODKEY,			            XK_BackSpace,	    spawn,		    SHCMD("sysact") },
 	{ MODKEY|ShiftMask,			    XK_BackSpace,	    killclient,		{0} },
 
-	{ MODKEY,			            XK_Tab,		        view,		    {0} }, /* Switch to previous tag */
+	/* { MODKEY,			            XK_Tab,		        view,		    {0} }, /1* Switch to previous tag *1/ */
 	{ MODKEY,			            XK_semicolon,		incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,		        XK_semicolon,		incnmaster,     {.i = -1 } },
 	{ MODKEY,			            XK_comma,		    shiftview,	    { .i = -1 } },
@@ -153,12 +156,12 @@ static Key keys[] = {
 
 	{ MODKEY,			            XK_f,		        togglefullscr,	{0} },
 
-    { MODKEY,                       XK_a,               view,           {.ui = ~0 } }, /* Show all tags */
+    { MODKEY|ControlMask,                       XK_a,               view,           {.ui = ~0 } }, /* Show all tags */
     { MODKEY|ShiftMask,             XK_a,               tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
 	{ MODKEY,			            XK_o,		        setlayout,	    {.v = &layouts[5]} }, /* monocle */
-
-	{ MODKEY,		                XK_u,	            togglescratch,	{.ui = 0} },
-	{ MODKEY|ShiftMask,			    XK_u,		        togglebar,	    {0} },
+	{ MODKEY,			            XK_e,		        togglebar,	    {0} },
+	{ MODKEY,		                XK_s,	            togglescratch,	{.ui = 0} },
+	{ MODKEY,			            XK_n,	            togglescratch,	{.ui = 1} },
 
 	{ MODKEY,			            XK_i,		        setmfact,	    {.f = -0.05} },
 	{ MODKEY|ShiftMask,	            XK_i,	            setmfact,      	{.f = +0.05} },
@@ -178,11 +181,11 @@ static Key keys[] = {
     TAGKEYS(                        XK_z,               7)
     TAGKEYS(                        XK_backslash,       8)
 
+	{ MODKEY,			            XK_u,		        view,		    {0} }, /* Switch to previous tag */
 	{ MODKEY|ShiftMask,			    XK_s,		        togglesticky,	{0} },
 
 	{ MODKEY,			            XK_Return,	        spawn,		    {.v = termcmd } },
 
-	{ MODKEY,			            XK_apostrophe,	    togglescratch,	{.ui = 1} },
 
 	{ MODKEY,			            XK_k,	            spawn,		    SHCMD("xscreensaver-command --activate") },
 	{ MODKEY,			            XK_x,		        incrgaps,	    {.i = -3 } },
@@ -219,8 +222,8 @@ static Key keys[] = {
 	{ MODKEY,			XK_F10,		spawn,		SHCMD("dmenuumount") },
 	{ MODKEY,			XK_F11,		spawn,		SHCMD("mpv --no-cache --no-osc --no-input-default-bindings --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
 	/* { MODKEY,			XK_F12,		xrdb,		{.v = NULL } }, */
-	/* { MODKEY,			XK_space,	zoom,		{0} }, */
-	/* { MODKEY|ShiftMask,		XK_space,	togglefloating,	{0} }, */
+	/* { MODKEY,			XK_,	zoom,		{0} }, */
+	/* { MODKEY|ShiftMask,		XK_,	togglefloating,	{0} }, */
 
 	{ 0,				XK_Print,	spawn,		SHCMD("maim pic-full-$(date '+%y%m%d-%H%M-%S').png") },
 	{ ShiftMask,			XK_Print,	spawn,		SHCMD("maimpick") },

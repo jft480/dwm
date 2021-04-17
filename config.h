@@ -40,13 +40,15 @@ typedef struct {
 } Sp;
 
 /* const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL }; */
-const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "135x50", NULL };
-const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-g", "115x50", NULL };
+const char *spcmd1[] = {TERMINAL, "-n", "sphelp", "-g", "135x50", NULL };
+const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-g", "125x45", NULL };
+const char *spcmd3[] = {TERMINAL, "-n", "spterm", "-g", "115x40", NULL };
 /* const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL }; */
 static Sp scratchpads[] = {
 	/* name          cmd  */
-	{"spterm",      spcmd1},
+	{"sphelp",      spcmd1},
 	{"spcalc",      spcmd2},
+	{"spterm",      spcmd3},
 };
 
 /* tagging */
@@ -61,8 +63,9 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 },
 	{ TERMCLASS,   NULL,       NULL,       	    0,            0,           1,         0,        -1 },
 	{ NULL,       NULL,       "Event Tester",   0,            0,           0,         1,        -1 },
-	{ NULL,      "spterm",    NULL,       	    SPTAG(0),     1,           1,         0,        -1 },
+	{ NULL,      "sphelp",    NULL,       	    SPTAG(0),     1,           1,         0,        -1 },
 	{ NULL,      "spcalc",    NULL,       	    SPTAG(1),     1,           1,         0,        -1 },
+	{ NULL,      "spterm",    NULL,       	    SPTAG(2),     1,           1,         0,        -1 },
 };
 
 /* layout(s) */
@@ -160,8 +163,6 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_p,               tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
 	{ MODKEY,			            XK_comma,		    setlayout,	    {.v = &layouts[5]} }, /* monocle */
 	{ MODKEY,			            XK_period,		    togglebar,	    {0} },
-	{ MODKEY,		                XK_n,	            togglescratch,	{.ui = 0} },
-	{ MODKEY,			            XK_s,	            togglescratch,	{.ui = 1} },
 
 	{ MODKEY,			            XK_i,		        setmfact,	    {.f = -0.05} },
 	{ MODKEY|ShiftMask,	            XK_i,	            setmfact,      	{.f = +0.05} },
@@ -174,6 +175,11 @@ static Key keys[] = {
     TAGKEYS(                        XK_r,               2)
     TAGKEYS(                        XK_l,               3)
 
+	{ MODKEY,		                XK_h,	            togglescratch,	{.ui = 0} },
+	{ MODKEY,			            XK_t,	            togglescratch,	{.ui = 1} },
+	{ MODKEY,			            XK_n,	            togglescratch,	{.ui = 2} },
+	{ MODKEY,			            XK_s,		        view,		    {0} }, /* Switch to previous tag */
+	{ MODKEY|ShiftMask,			    XK_s,		        togglesticky,	{0} },
 
     TAGKEYS(                        XK_m,               4)
     TAGKEYS(                        XK_w,               5)
@@ -182,8 +188,6 @@ static Key keys[] = {
     TAGKEYS(                        XK_backslash,       8)
 
 	{ MODKEY,			            XK_a,		        view,		    {0} }, /* Switch to previous tag */
-	{ MODKEY,			            XK_h,		        view,		    {0} }, /* Switch to previous tag */
-	{ MODKEY|ShiftMask,			    XK_s,		        togglesticky,	{0} },
 
 	{ MODKEY,			            XK_Return,	        spawn,		    {.v = termcmd } },
 

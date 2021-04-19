@@ -42,7 +42,7 @@ typedef struct {
 /* const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL }; */
 const char *spcmd1[] = {TERMINAL, "-n", "sphelp", "-g", "135x50", NULL };
 const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-g", "125x45", NULL };
-const char *spcmd3[] = {TERMINAL, "-n", "spterm", "-g", "115x40", NULL };
+const char *spcmd3[] = {TERMINAL, "-n", "spterm", "-g", "145x50", NULL };
 /* const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL }; */
 static Sp scratchpads[] = {
 	/* name          cmd  */
@@ -63,8 +63,8 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 },
 	{ TERMCLASS,   NULL,       NULL,       	    0,            0,           1,         0,        -1 },
 	{ NULL,       NULL,       "Event Tester",   0,            0,           0,         1,        -1 },
-	{ NULL,      "sphelp",    NULL,       	    SPTAG(0),     1,           1,         0,        -1 },
-	{ NULL,      "spcalc",    NULL,       	    SPTAG(1),     1,           1,         0,        -1 },
+	{ NULL,      "sphelp",    NULL,       	    SPTAG(0),     0,           1,         0,        -1 },
+	{ NULL,      "spcalc",    NULL,       	    SPTAG(1),     0,           1,         0,        -1 },
 	{ NULL,      "spterm",    NULL,       	    SPTAG(2),     1,           1,         0,        -1 },
 };
 
@@ -105,6 +105,8 @@ static const Layout layouts[] = {
     { MOD, XK_e,                    ACTION##stack,  {.i = INC(+1) } }, \
     { MOD, XK_minus,                ACTION##stack,  {.i = INC(-1) } }, \
     { MOD, XK_Tab,                  ACTION##stack,  {.i = PREVSEL } }, \
+    { MOD, XK_s,                    ACTION##stack,  {.i = PREVSEL } }, \
+    /* { MOD, XK_,                  ACTION##stack,  {.i = PREVSEL } }, \ */
     /* { MOD, XK_,                    ACTION##stack,  {.i = INC(-1) } }, \ */
     /* { MOD, XK_,                    ACTION##stack,  {.i = 1 } }, \ */
 
@@ -150,6 +152,8 @@ static Key keys[] = {
 
 	{ MODKEY,			            XK_semicolon,		incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,		        XK_semicolon,		incnmaster,     {.i = -1 } },
+	{ MODKEY,			            XK_comma,		    setlayout,	    {.v = &layouts[5]} }, /* monocle */
+	{ MODKEY,			            XK_period,		    togglebar,	    {0} },
 	{ MODKEY,			            XK_q,		        shiftview,	    { .i = -1 } },
 	{ MODKEY|ShiftMask,		        XK_q,		        shifttag,	    { .i = -1 } },
 	{ MODKEY,			            XK_j,	            shiftview,	    { .i = 1 } },
@@ -159,10 +163,7 @@ static Key keys[] = {
 
 	{ MODKEY,			            XK_f,		        togglefullscr,	{0} },
 
-    { MODKEY|ControlMask,           XK_p,               view,           {.ui = ~0 } }, /* Show all tags */
-    { MODKEY|ShiftMask,             XK_p,               tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
-	{ MODKEY,			            XK_comma,		    setlayout,	    {.v = &layouts[5]} }, /* monocle */
-	{ MODKEY,			            XK_period,		    togglebar,	    {0} },
+	{ MODKEY,			            XK_p,	            spawn,		    SHCMD("xscreensaver-command --activate") },
 
 	{ MODKEY,			            XK_i,		        setmfact,	    {.f = -0.05} },
 	{ MODKEY|ShiftMask,	            XK_i,	            setmfact,      	{.f = +0.05} },
@@ -178,7 +179,7 @@ static Key keys[] = {
 	{ MODKEY,		                XK_h,	            togglescratch,	{.ui = 0} },
 	{ MODKEY,			            XK_t,	            togglescratch,	{.ui = 1} },
 	{ MODKEY,			            XK_n,	            togglescratch,	{.ui = 2} },
-	{ MODKEY,			            XK_s,		        view,		    {0} }, /* Switch to previous tag */
+	{ MODKEY,			            XK_space,		    view,		    {0} }, /* switch to previous tag */
 	{ MODKEY|ShiftMask,			    XK_s,		        togglesticky,	{0} },
 
     TAGKEYS(                        XK_m,               4)
@@ -191,8 +192,8 @@ static Key keys[] = {
 
 	{ MODKEY,			            XK_Return,	        spawn,		    {.v = termcmd } },
 
-
-	{ MODKEY,			            XK_k,	            spawn,		    SHCMD("xscreensaver-command --activate") },
+    { MODKEY|ControlMask,           XK_k,               view,           {.ui = ~0 } }, /* Show all tags */
+    { MODKEY|ShiftMask,             XK_k,               tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
 	{ MODKEY,			            XK_x,		        incrgaps,	    {.i = -3 } },
 	{ MODKEY|ShiftMask,			    XK_x,		        incrgaps,	    {.i = +3 } },
 	{ MODKEY,		                XK_b,		        setlayout,	    {.v = &layouts[4]} }, /* bstack */

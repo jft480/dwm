@@ -102,8 +102,8 @@ static const Layout layouts[] = {
 
 #define STACKKEYS(MOD,ACTION) \
     { MOD, XK_u,                    ACTION##stack,  {.i = 0 } }, \
-    { MOD, XK_e,                    ACTION##stack,  {.i = INC(+1) } }, \
-    { MOD, XK_minus,                ACTION##stack,  {.i = INC(-1) } }, \
+    { MOD, XK_period,               ACTION##stack,  {.i = INC(+1) } }, \
+    { MOD, XK_comma,                ACTION##stack,  {.i = INC(-1) } }, \
     { MOD, XK_Tab,                  ACTION##stack,  {.i = PREVSEL } }, \
     { MOD, XK_s,                    ACTION##stack,  {.i = PREVSEL } }, \
     /* { MOD, XK_,                  ACTION##stack,  {.i = PREVSEL } }, \ */
@@ -152,8 +152,9 @@ static Key keys[] = {
 
 	{ MODKEY,			            XK_semicolon,		incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,		        XK_semicolon,		incnmaster,     {.i = -1 } },
-	{ MODKEY,			            XK_comma,		    setlayout,	    {.v = &layouts[5]} }, /* monocle */
-	{ MODKEY,			            XK_period,		    togglebar,	    {0} },
+	{ MODKEY,			            XK_minus,		    setlayout,	    {.v = &layouts[5]} }, /* monocle */
+	{ MODKEY|ShiftMask,             XK_minus,           setlayout,	    {.v = &layouts[0]} }, /* deck */
+	{ MODKEY,			            XK_e,               togglebar,	    {0} },
 	{ MODKEY,			            XK_q,		        shiftview,	    { .i = -1 } },
 	{ MODKEY|ShiftMask,		        XK_q,		        shifttag,	    { .i = -1 } },
 	{ MODKEY,			            XK_j,	            shiftview,	    { .i = 1 } },
@@ -168,8 +169,7 @@ static Key keys[] = {
 	{ MODKEY,			            XK_i,		        setmfact,	    {.f = -0.05} },
 	{ MODKEY|ShiftMask,	            XK_i,	            setmfact,      	{.f = +0.05} },
 
-	{ MODKEY,		                XK_d,		        setlayout,	    {.v = &layouts[0]} }, /* deck */
-	{ MODKEY|ShiftMask,			    XK_d,		        spawn,          SHCMD("dmenu_run") },
+	{ MODKEY,                       XK_d,		        spawn,          SHCMD("dmenu_run") },
 
     TAGKEYS(                        XK_g,               0)
     TAGKEYS(                        XK_c,               1)

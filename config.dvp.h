@@ -52,7 +52,7 @@ static Sp scratchpads[] = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "1b", "2b", "3b", "4b", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -101,11 +101,11 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 #define STACKKEYS(MOD,ACTION) \
-    { MOD, XK_u,                    ACTION##stack,  {.i = 0 } }, \
-    { MOD, XK_period,               ACTION##stack,  {.i = INC(+1) } }, \
     { MOD, XK_comma,                ACTION##stack,  {.i = INC(-1) } }, \
-    { MOD, XK_Tab,                  ACTION##stack,  {.i = PREVSEL } }, \
+    { MOD, XK_period,               ACTION##stack,  {.i = INC(+1) } }, \
     { MOD, XK_s,                    ACTION##stack,  {.i = PREVSEL } }, \
+    { MOD, XK_minus,                ACTION##stack,  {.i = 0 } }, \
+    /* { MOD, XK_Tab,                  ACTION##stack,  {.i = PREVSEL } }, \ */
     /* { MOD, XK_,                  ACTION##stack,  {.i = PREVSEL } }, \ */
     /* { MOD, XK_,                    ACTION##stack,  {.i = INC(-1) } }, \ */
     /* { MOD, XK_,                    ACTION##stack,  {.i = 1 } }, \ */
@@ -164,6 +164,8 @@ static Key keys[] = {
 	{ MODKEY,			            XK_a,		        view,		    {0} }, /* Switch to previous tag */
 
 	{ MODKEY,			            XK_e,               togglebar,	    {0} },
+	{ MODKEY,			            XK_u,		    setlayout,	    {.v = &layouts[5]} }, /* monocle */
+	{ MODKEY|ShiftMask,             XK_u,           setlayout,	    {.v = &layouts[0]} }, /* deck */
 
 	{ MODKEY,			            XK_i,		        setmfact,	    {.f = -0.05} },
 	{ MODKEY|ShiftMask,	            XK_i,	            setmfact,      	{.f = +0.05} },
@@ -173,8 +175,6 @@ static Key keys[] = {
 	{ MODKEY,			            XK_t,	            togglescratch,	{.ui = 1} },
 	{ MODKEY,			            XK_n,	            togglescratch,	{.ui = 2} },
 	{ MODKEY|ShiftMask,			    XK_s,		        togglesticky,	{0} },
-	{ MODKEY,			            XK_minus,		    setlayout,	    {.v = &layouts[5]} }, /* monocle */
-	{ MODKEY|ShiftMask,             XK_minus,           setlayout,	    {.v = &layouts[0]} }, /* deck */
 	{ MODKEY,			            XK_Return,	        spawn,		    {.v = termcmd } },
 
     TAGKEYS(                        XK_g,               0)

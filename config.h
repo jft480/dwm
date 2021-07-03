@@ -40,8 +40,11 @@ typedef struct {
 } Sp;
 
 /* const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL }; */
-const char *spcmd1[] = {TERMINAL, "-n", "sphelp", "-g", "135x50", NULL };
-const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-g", "125x45", NULL };
+/* For new dimensions of the scratchpads to take effect, leave DWM. */
+/* For new dimensions of the scratchpads to take effect, leave DWM. */
+/* For new dimensions of the scratchpads to take effect, leave DWM. */
+const char *spcmd1[] = {TERMINAL, "-n", "sphelp", "-g", "185x57", NULL };
+const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-g", "165x50", NULL };
 const char *spcmd3[] = {TERMINAL, "-n", "spterm", "-g", "145x50", NULL };
 /* const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL }; */
 static Sp scratchpads[] = {
@@ -63,8 +66,8 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 },
 	{ TERMCLASS,   NULL,       NULL,       	    0,            0,           1,         0,        -1 },
 	{ NULL,       NULL,       "Event Tester",   0,            0,           0,         1,        -1 },
-	{ NULL,      "sphelp",    NULL,       	    SPTAG(0),     0,           1,         0,        -1 },
-	{ NULL,      "spcalc",    NULL,       	    SPTAG(1),     0,           1,         0,        -1 },
+	{ NULL,      "sphelp",    NULL,       	    SPTAG(0),     1,           1,         0,        -1 },
+	{ NULL,      "spcalc",    NULL,       	    SPTAG(1),     1,           1,         0,        -1 },
 	{ NULL,      "spterm",    NULL,       	    SPTAG(2),     1,           1,         0,        -1 },
 };
 
@@ -76,14 +79,15 @@ static int resizehints = 1;    /* 1 means respect size hints in tiled resizals *
 #include "vanitygaps.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
+ 	{ "[M]",	monocle },		/* All windows on top of eachother */
 	{ "[D]",	deck },			/* Master on left, slaves in monocle-like mode on right */
+
+	{ "TTT",	bstack },		/* Master on top, slaves on bottom */
  	{ "[]=",	tile },			/* Default: Master on left, slaves on right */
 
 	{ "[@]",	spiral },		/* Fibonacci spiral */
 	{ "[\\]",	dwindle },		/* Decreasing in size right and leftward */
 
-	{ "TTT",	bstack },		/* Master on top, slaves on bottom */
- 	{ "[M]",	monocle },		/* All windows on top of eachother */
 
 	{ "|M|",	centeredmaster },		/* Master in middle, slaves on sides */
 	{ ">M>",	centeredfloatingmaster },	/* Same but master floats */
@@ -101,10 +105,13 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 #define STACKKEYS(MOD,ACTION) \
-    { MOD, XK_comma,                ACTION##stack,  {.i = INC(-1) } }, \
-    { MOD, XK_period,               ACTION##stack,  {.i = INC(+1) } }, \
+    { MOD, XK_h,                    ACTION##stack,  {.i = INC(-1) } }, \
+    { MOD, XK_t,                    ACTION##stack,  {.i = INC(+1) } }, \
+    { MOD, XK_n,                    ACTION##stack,  {.i = 0 } }, \
     { MOD, XK_s,                    ACTION##stack,  {.i = PREVSEL } }, \
-    { MOD, XK_minus,                ACTION##stack,  {.i = 0 } }, \
+    /* { MOD, XK_comma,                ACTION##stack,  {.i = INC(-1) } }, \ */
+    /* { MOD, XK_period,               ACTION##stack,  {.i = INC(+1) } }, \ */
+    /* { MOD, XK_minus,                ACTION##stack,  {.i = INC(-1) } }, \ */
     /* { MOD, XK_Tab,                  ACTION##stack,  {.i = PREVSEL } }, \ */
     /* { MOD, XK_,                  ACTION##stack,  {.i = PREVSEL } }, \ */
     /* { MOD, XK_,                    ACTION##stack,  {.i = INC(-1) } }, \ */
@@ -163,17 +170,17 @@ static Key keys[] = {
 
 	{ MODKEY,			            XK_a,		        view,		    {0} }, /* Switch to previous tag */
 
+	{ MODKEY,			            XK_o,	            togglescratch,	{.ui = 0} },
 	{ MODKEY,			            XK_e,               togglebar,	    {0} },
-	{ MODKEY,			            XK_u,		    setlayout,	    {.v = &layouts[5]} }, /* monocle */
-	{ MODKEY|ShiftMask,             XK_u,           setlayout,	    {.v = &layouts[0]} }, /* deck */
+	{ MODKEY,			            XK_u,		        setlayout,	    {.v = &layouts[0]} }, /* monocle */
+	{ MODKEY|ShiftMask,			    XK_u,		        setlayout,	    {.v = &layouts[1]} }, /* deck */
 
 	{ MODKEY,			            XK_i,		        setmfact,	    {.f = -0.05} },
 	{ MODKEY|ShiftMask,	            XK_i,	            setmfact,      	{.f = +0.05} },
 	{ MODKEY,                       XK_d,		        spawn,          SHCMD("dmenu_run") },
 
-	{ MODKEY,		                XK_h,	            togglescratch,	{.ui = 0} },
-	{ MODKEY,			            XK_t,	            togglescratch,	{.ui = 1} },
-	{ MODKEY,			            XK_n,	            togglescratch,	{.ui = 2} },
+	/* { MODKEY,		                XK_t,	            togglescratch,	{.ui = 1} }, */
+	/* { MODKEY,			            XK_n,	            togglescratch,	{.ui = 2} }, */
 	{ MODKEY|ShiftMask,			    XK_s,		        togglesticky,	{0} },
 	{ MODKEY,			            XK_Return,	        spawn,		    {.v = termcmd } },
 
@@ -190,14 +197,15 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_k,               tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
 	{ MODKEY,			            XK_x,		        incrgaps,	    {.i = -3 } },
 	{ MODKEY|ShiftMask,			    XK_x,		        incrgaps,	    {.i = +3 } },
-	{ MODKEY,		                XK_b,		        setlayout,	    {.v = &layouts[4]} }, /* bstack */
-	{ MODKEY|ShiftMask,			    XK_b,		        setlayout,	    {.v = &layouts[1]} }, /* tile */
+	{ MODKEY,		                XK_b,		        setlayout,	    {.v = &layouts[2]} }, /* bstack */
+	{ MODKEY|ShiftMask,             XK_u,               setlayout,	    {.v = &layouts[3]} }, /* tile */
     TAGKEYS(                        XK_m,               4)
     TAGKEYS(                        XK_w,               5)
     TAGKEYS(                        XK_v,               6)
     TAGKEYS(                        XK_z,               7)
 
 	{ MODKEY,			            XK_space,		    view,		    {0} }, /* switch to previous tag */
+	{ MODKEY,			            XK_Tab,		        view,		    {0} }, /* switch to previous tag */
 
 
 

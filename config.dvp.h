@@ -79,11 +79,11 @@ static int resizehints = 1;    /* 1 means respect size hints in tiled resizals *
 #include "vanitygaps.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "TTT",	bstack },		/* Master on top, slaves on bottom */
  	{ "[M]",	monocle },		/* All windows on top of eachother */
-
- 	{ "[]=",	tile },			/* Default: Master on left, slaves on right */
 	{ "[D]",	deck },			/* Master on left, slaves in monocle-like mode on right */
+
+	{ "TTT",	bstack },		/* Master on top, slaves on bottom */
+ 	{ "[]=",	tile },			/* Default: Master on left, slaves on right */
 
 	{ "[@]",	spiral },		/* Fibonacci spiral */
 	{ "[\\]",	dwindle },		/* Decreasing in size right and leftward */
@@ -107,8 +107,8 @@ static const Layout layouts[] = {
 #define STACKKEYS(MOD,ACTION) \
     { MOD, XK_h,                    ACTION##stack,  {.i = INC(-1) } }, \
     { MOD, XK_t,                    ACTION##stack,  {.i = INC(+1) } }, \
-    { MOD, XK_n,                    ACTION##stack,  {.i = PREVSEL } }, \
-    { MOD, XK_s,                    ACTION##stack,  {.i = 0 } }, \
+    { MOD, XK_n,                    ACTION##stack,  {.i = 0 } }, \
+    { MOD, XK_s,                    ACTION##stack,  {.i = PREVSEL } }, \
     /* { MOD, XK_comma,                ACTION##stack,  {.i = INC(-1) } }, \ */
     /* { MOD, XK_period,               ACTION##stack,  {.i = INC(+1) } }, \ */
     /* { MOD, XK_minus,                ACTION##stack,  {.i = INC(-1) } }, \ */
@@ -172,8 +172,8 @@ static Key keys[] = {
 
 	{ MODKEY,			            XK_o,	            togglescratch,	{.ui = 0} },
 	{ MODKEY,			            XK_e,               togglebar,	    {0} },
-	{ MODKEY,		                XK_u,		        setlayout,	    {.v = &layouts[2]} }, /* tile */
-	{ MODKEY|ShiftMask,			    XK_u,		        setlayout,	    {.v = &layouts[3]} }, /* deck */
+	{ MODKEY,			            XK_u,		        setlayout,	    {.v = &layouts[0]} }, /* monocle */
+	{ MODKEY|ShiftMask,			    XK_u,		        setlayout,	    {.v = &layouts[1]} }, /* deck */
 
 	{ MODKEY,			            XK_i,		        setmfact,	    {.f = -0.05} },
 	{ MODKEY|ShiftMask,	            XK_i,	            setmfact,      	{.f = +0.05} },
@@ -197,8 +197,8 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_k,               tag,            {.ui = ~0 } }, /* Stick to tags 1-9 */
 	{ MODKEY,			            XK_x,		        incrgaps,	    {.i = -3 } },
 	{ MODKEY|ShiftMask,			    XK_x,		        incrgaps,	    {.i = +3 } },
-	{ MODKEY,			            XK_b,		        setlayout,	    {.v = &layouts[0]} }, /* bstack */
-	{ MODKEY|ShiftMask,             XK_b,               setlayout,	    {.v = &layouts[1]} }, /* monocle */
+	{ MODKEY,		                XK_b,		        setlayout,	    {.v = &layouts[2]} }, /* bstack */
+	{ MODKEY|ShiftMask,             XK_u,               setlayout,	    {.v = &layouts[3]} }, /* tile */
     TAGKEYS(                        XK_m,               4)
     TAGKEYS(                        XK_w,               5)
     TAGKEYS(                        XK_v,               6)

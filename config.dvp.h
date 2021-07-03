@@ -105,9 +105,9 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 #define STACKKEYS(MOD,ACTION) \
-    { MOD, XK_h,                    ACTION##stack,  {.i = INC(-1) } }, \
-    { MOD, XK_t,                    ACTION##stack,  {.i = INC(+1) } }, \
-    { MOD, XK_n,                    ACTION##stack,  {.i = 0 } }, \
+    { MOD, XK_h,                    ACTION##stack,  {.i = 0 } }, \
+    { MOD, XK_t,                    ACTION##stack,  {.i = INC(-1) } }, \
+    { MOD, XK_n,                    ACTION##stack,  {.i = INC(+1) } }, \
     { MOD, XK_s,                    ACTION##stack,  {.i = PREVSEL } }, \
     /* { MOD, XK_comma,                ACTION##stack,  {.i = INC(-1) } }, \ */
     /* { MOD, XK_period,               ACTION##stack,  {.i = INC(+1) } }, \ */
@@ -182,6 +182,8 @@ static Key keys[] = {
 	/* { MODKEY,		                XK_t,	            togglescratch,	{.ui = 1} }, */
 	/* { MODKEY,			            XK_n,	            togglescratch,	{.ui = 2} }, */
 	{ MODKEY|ShiftMask,			    XK_s,		        togglesticky,	{0} },
+	{ MODKEY,			            XK_minus,		    setlayout,	    {.v = &layouts[0]} }, /* monocle */
+	{ MODKEY|ShiftMask,			    XK_minus,		    setlayout,	    {.v = &layouts[1]} }, /* deck */
 	{ MODKEY,			            XK_Return,	        spawn,		    {.v = termcmd } },
 
     TAGKEYS(                        XK_g,               0)

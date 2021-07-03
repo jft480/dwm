@@ -198,7 +198,7 @@ static Key keys[] = {
 	{ MODKEY,			            XK_x,		        incrgaps,	    {.i = -3 } },
 	{ MODKEY|ShiftMask,			    XK_x,		        incrgaps,	    {.i = +3 } },
 	{ MODKEY,		                XK_b,		        setlayout,	    {.v = &layouts[2]} }, /* bstack */
-	{ MODKEY|ShiftMask,             XK_u,               setlayout,	    {.v = &layouts[3]} }, /* tile */
+	{ MODKEY|ShiftMask,             XK_b,               setlayout,	    {.v = &layouts[3]} }, /* tile */
     TAGKEYS(                        XK_m,               4)
     TAGKEYS(                        XK_w,               5)
     TAGKEYS(                        XK_v,               6)
